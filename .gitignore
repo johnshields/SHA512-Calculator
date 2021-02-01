@@ -1,9 +1,9 @@
 # SHA512-Calculator
-
 .idea
 cmake-build-debug/
 CMakeLists.txt
 cmake-build-wsl_profile
+program/program
 
 # Prerequisites
 *.d
