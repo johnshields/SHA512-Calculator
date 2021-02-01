@@ -18,7 +18,7 @@ A program in the C programming language to calculate the SHA512 (Secure Hash Sta
 | **Project Title** | SHA512 Calculator |
 | :------------- |:-------------|
 | **Course**              | BSc (Hons) in Software Development |
-| **Module**              | Thoery Of Algorithms |
+| **Module**              | Theory Of Algorithms |
 | **Institute**           | [Galway-Mayo Institute of Technology](https://www.gmit.ie/) |
 | **Student**             | [John Shields](https://github.com/johnshields) |
 | **Module Lecturer**     | Ian McLoughlin |
@@ -34,5 +34,7 @@ Your program must compile using `gcc` or `clang` and you must include a `Makefil
 You must also include tests which run upon `make test` being called, as will be described in lectures.
 You should also include in your repository an appropriate `.gitignore` file and a `README.md` as described below.
 
+***
+View the Wiki [HERE](https://github.com/johnshields/SHA512-Calculator/wiki) for more detail. 
 ***
 ###### END OF README
