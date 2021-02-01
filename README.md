@@ -1,4 +1,4 @@
-<h1 align="center">Thoery Of Algorithms</h1>
+<h1 align="center">Theory Of Algorithms</h1>
 
 
 <a href="https://www.gmit.ie/" >
