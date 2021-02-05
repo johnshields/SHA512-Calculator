@@ -9,12 +9,12 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 
-# SHA512-Calculator
+# SHA-512 Calculator
 A repository for the main project for the module Theory of Algorithms.<br>
 A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
 
 # Project Details
-| **Project Title** | SHA512 Calculator |
+| **Project Title** | SHA-512 Calculator |
 | :------------- |:-------------|
 | **Course**              | BSc (Hons) in Software Development |
 | **Module**              | Theory Of Algorithms |
