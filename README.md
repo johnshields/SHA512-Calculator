@@ -31,9 +31,9 @@ Your program must take the name or path of the file as a command line argument a
 The program must be coded from scratch - you cannot use any external libraries other than what is included in the C standard library.
 Your program must compile using `gcc` or `clang` and you must include a `Makefile` which compiles it upon `make` being called in the project folder.
 You must also include tests which run upon `make test` being called, as will be described in lectures.
-You should also include in your repository an appropriate `.gitignore` file and a `README.md` as described below.
+You should also include in your repository an appropriate `.gitignore` file and a `README.md`.
 
 ***
-View the Wiki [HERE](https://github.com/johnshields/SHA512-Calculator/wiki) for more detail.
+Please refer to the Wiki [HERE](https://github.com/johnshields/SHA512-Calculator/wiki) for to find more detail and all related pages.
 ***
 ###### END OF README
