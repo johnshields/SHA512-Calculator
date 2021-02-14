@@ -34,13 +34,13 @@ You must also include tests which run upon `make test` being called, as will be 
 You should also include in your repository an appropriate `.gitignore` file and a `README.md`.
 
 ***
-## Links to Reporistory Wiki
+## Links to Project workings
 All weekly Labs are located in [this repository](https://github.com/johnshields/TOA-Labs).
 
-All Research can be found [HERE](https://github.com/johnshields/SHA512-Calculator/wiki/Research).
+All Research can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md).
 
-Research and Development Diary can be found [HERE](https://github.com/johnshields/SHA512-Calculator/wiki/Research-and-Development-Diary).
+Research and Development Diary can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research-and-Development-Diary.md).
 
-All References and Resources can be found [HERE](https://github.com/johnshields/SHA512-Calculator/wiki/References).
+All References and Resources can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/References.md).
 ***
 ###### END OF README
