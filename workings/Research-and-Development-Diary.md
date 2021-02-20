@@ -2,6 +2,7 @@
 
 All weekly Labs are located in [this repository](https://github.com/johnshields/TOA-Labs).
 
+***
 ## Week One
 In order to begin this project, a GitHub repository was set up. Then an environment was set up for the program. This consists of a [subsystem (WSL2)](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) that works with a [Ubuntu Terminal](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) and [Visual Studio Code](https://code.visualstudio.com/). I also have this set up with [JetBrains' CLion](https://www.jetbrains.com/clion/download) as I am comfortable with using their IDE tools. 
 
@@ -20,3 +21,9 @@ Also this week the first [lab](https://web.microsoftstream.com/video/9e7f870c-30
 
 ## Week Two
 This week the Lab on [Bit Operations](https://github.com/johnshields/TOA-Labs/blob/main/bit_operations/main.c) was finished. What I mainly learned from the Lab is how to use the unary, binary, and ternary operators. I played around with them a lot by changing the ints and breaking apart the functions to understand how these operators all work. Also, this week in the Labs it was said that pages 24-26 of the [Secure Hash Standard](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) describe the algorithm for the SHA-512. I had looked over this last week but I looked over it again to get a better understanding. 
+
+## Week Three
+This week in the labs focused on dealing with command line arguments in C using getopt, a C library function used to parse command-line options of the Unix/POSIX style. Also, in the labs, Turing's work on computability was looked into as it relates to work in this module in many ways. As well as Turning's work, in the labs, Chomsky's work on formal languages were also looked at to see how it relates to this module's work.
+
+***
+###### END OF RESEARCH AND DEVELOPMENT DIARY
