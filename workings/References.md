@@ -6,5 +6,6 @@
 5. [*US Secure Hash Algorithms*](https://tools.ietf.org/pdf/rfc4634.pdf)
 6. [*SHA: Secure Hashing Algorithm*, Computerphile](https://www.youtube.com/watch?v=DMtFhACPnTY&ab_channel=Computerphile)
 7. [*Secure Hash Algorithm (SHA) 512*, Anny Kartika Sari](https://www.youtube.com/watch?v=Q0MSYPlGHyo&t=372s&ab_channel=AnnyKartikaSari)
+8. [*getopt - Unix-like operating system command](https://g.co/kgs/aeVskU)
 
 ## Program
