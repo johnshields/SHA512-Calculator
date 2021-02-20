@@ -25,6 +25,10 @@ SHA-512 is part of the SHA-2 set of cryptographic hash functions, designed by th
 ### Experimenting with [Online SHA-512 Calulator](https://emn178.github.io/online-tools/sha512.html).
 [![Online SHA-512 Calulator](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/images/SHA-512_online.png?raw=true)](https://emn178.github.io/online-tools/sha512.html)
 
+### getopts
+getopt is a C library function used to parse command-line options of the Unix/POSIX style. It is a part of the POSIX specification and is universal to Unix-like systems. It is also the name of a Unix program for parsing command-line arguments in shell scripts.
+[[8]](https://g.co/kgs/aeVskU)
+
 ## Main Questions
 ### Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
 * It is a one-way function
