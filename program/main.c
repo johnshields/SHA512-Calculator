@@ -14,10 +14,18 @@
 #define WORD uint64_t
 #define PF PRIX64
 
-// Ch(x, y,z) = (x  y)(x  z)
+// TODO - ROTR & SHR - little SIGMA - big SIGMA
+
+// Ch(x, y, z) = (x  y)(x  z)
 WORD Ch(WORD x, WORD y, WORD z) {
     return (x & y) ^ (~x & z);
 }
+
+// Maj(x, y, z) = (x  y)(x  z)(y  z)
+WORD Maj(WORD x, WORD y, WORD z) {
+    return (x & y) ^ (~x & z) ^ (y & z);
+}
+
 
 int main() {
     printf("SHA-512 Calculator\n");
@@ -30,8 +38,9 @@ int main() {
     WORD z = 0xB0B0B0B0;
 
     WORD ans = Ch(x, y, z);
+    WORD res = Maj(x, y, z);
     printf("Ch(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
-
+    printf("Maj(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, res);
 
     return 0;
 }
