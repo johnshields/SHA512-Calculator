@@ -25,5 +25,24 @@ This week the Lab on [Bit Operations](https://github.com/johnshields/TOA-Labs/bl
 ## Week Three
 This week in the labs focused on dealing with command line arguments in C using getopt, a C library function used to parse command-line options of the Unix/POSIX style. Also, in the labs, Turing's work on computability was looked into as it relates to work in this module in many ways. As well as Turning's work, in the labs, Chomsky's work on formal languages were also looked at to see how it relates to this module's work.
 
+## Week Four
+This week the theory side of automata and how they relate to formal languages. For partical work the functions `Ch` and `Maj` where done for the SHA-256. I got it done for SHA-512 for the main program and added in the command line arguments from last week. 
+
+```c
+#define WORD uint64_t
+```
+
+```c
+WORD Ch(WORD x, WORD y, WORD z) {
+    return (x & y) ^ (~x & z);
+}
+```
+
+```
+WORD Maj(WORD x, WORD y, WORD z) {
+    return (x & y) ^ (~x & z) ^ (y & z);
+}
+```
+
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
