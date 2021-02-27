@@ -3,6 +3,7 @@
  * SHA-512 Calculator
  * A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
  *
+ * https://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html
  * https://www.nist.gov/publications/secure-hash-standard
  * https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
  * https://www.guru99.com/c-bitwise-operators.html
@@ -27,9 +28,8 @@ WORD Maj(WORD x, WORD y, WORD z) {
 }
 
 
-int main() {
+int main(int argc, char *argv[]) {
     printf("SHA-512 Calculator\n");
-
     // x picks out the 1s and 0s from the corresponding position
     // where X has 0s picks out the 1s and 0s in z.
     // Use x to choose bits from y & z and merge them together.
