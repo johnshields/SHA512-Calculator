@@ -28,17 +28,20 @@ This week in the labs focused on dealing with command line arguments in C using 
 ## Week Four
 This week the theory side of automata and how they relate to formal languages. For partical work the functions `Ch` and `Maj` where done for the SHA-256. I got it done for SHA-512 for the main program and added in the command line arguments from last week. 
 
+
 ```c
 #define WORD uint64_t
 ```
 
+`Ch(x, y, z) = (x  y)(x  z)`
 ```c
 WORD Ch(WORD x, WORD y, WORD z) {
     return (x & y) ^ (~x & z);
 }
 ```
 
-```
+`Maj(x, y, z) = (x  y)(x  z)(y  z)`
+```c
 WORD Maj(WORD x, WORD y, WORD z) {
     return (x & y) ^ (~x & z) ^ (y & z);
 }
