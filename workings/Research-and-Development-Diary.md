@@ -33,13 +33,14 @@ This week the theory side of automata and how they relate to formal languages. F
 #define WORD uint64_t
 ```
 
-`Ch(x, y, z) = (x  y)(x  z)`
+![image](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
 ```c
 WORD Ch(WORD x, WORD y, WORD z) {
     return (x & y) ^ (~x & z);
 }
 ```
 
+![image](https://user-images.githubusercontent.com/26766163/109430281-76634680-79f8-11eb-8a50-4f24855efa26.png)
 `Maj(x, y, z) = (x  y)(x  z)(y  z)`
 ```c
 WORD Maj(WORD x, WORD y, WORD z) {
