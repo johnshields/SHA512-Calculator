@@ -29,6 +29,19 @@ SHA-512 is part of the SHA-2 set of cryptographic hash functions, designed by th
 getopt is a C library function used to parse command-line options of the Unix/POSIX style. It is a part of the POSIX specification and is universal to Unix-like systems. It is also the name of a Unix program for parsing command-line arguments in shell scripts.
 [[8]](https://g.co/kgs/aeVskU)
 
+### SHA-384, SHA-512, SHA-512/224 and SHA-512/256 Functions
+Six logical functions are used in SHA-384, SHA-512, SHA-512/224, and SHA-512/256, with each function running on 64-bit words represented as x, y, and z. Each function generates a new 64-bit word as a result. [[1]](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+
+1. The & (bitwise AND) in C takes two numbers as operands and does AND on every bit of two numbers. The result of AND is 1 only if both bits are 1.
+2. The | (bitwise OR) in C takes two numbers as operands and does OR on every bit of two numbers. The result of OR is 1 if any of the two bits is 1.
+3. The ^ (bitwise XOR) in C takes two numbers as operands and does XOR on every bit of two numbers. The result of XOR is 1 if the two bits are different.
+4. The << (left shift) in C takes two numbers, left shifts the bits of the first operand, the second operand decides the number of places to shift.
+5. The >> (right shift) in C takes two numbers, right shifts the bits of the first operand, the second operand decides the number of places to shift.
+6. The ~ (bitwise NOT) in C takes one number and inverts all bits of it.
+
+[[9]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
+
+
 ## Main Questions
 ### Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
 * It is a one-way function
