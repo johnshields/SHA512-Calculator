@@ -4,12 +4,11 @@
  * A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
  *
  * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
- * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
- * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
  */
 
 #include <stdio.h>
 #include <inttypes.h>
+#include "funcs.h"
 
 #define W 64
 // A group of 64 bits (8 bytes). [1] (Page 4)
@@ -17,49 +16,8 @@
 #define PF PRIX64
 
 /*
- * Six Logical Functions.
- *
- * ROT functions
- * The rotate right (circular right shift) operation ROTR n (x),
- * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
-*/
-#define ROTR(x, n) (x>>n) | (x<<(W-n))
-/*
- * The right shift operation SHR n (x),
- * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
-*/
-#define SHR(x, n) x>>n
-/*
- * The rotate left (circular left shift) operation, ROTL n (x),
- * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 9)
-*/
-#define ROTL(x, n) (x<<n) | (x>>(W-n))
-
-/*
- * Page 10 - [1].
- * Page 5 - [1] + [2] for Bitwise Operators.
- *
- * Ch stands for choose: As the x input chooses if the output is from y or from z.
- * For each bit index, that result bit is according to the bit from y or z  at this index,
- * depending on if the bit from x is 1 or 0. [3]
- */
-#define CH(x, y, z) (x & y) ^ (~x & z)
-
-/*
- * Maj stands for majority: for each bit index, that result bit is according to the majority
- * of the three inputs bits for x y and z at this index. [3]
- */
-#define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
-
-// SIGMA functions
-#define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
-#define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
-#define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
-#define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
-
-/*
  * This const represents the first sixty-four bits of the fractional parts of the cube roots of the
- * first eighty prime numbers. In hex, these constant words are (from left to right). [1] (Page 12)
+ * first eighty prime numbers. In hex, these constant words are from left to right. [1] (Page 12)
  */
 const WORD K[] = {
         0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
@@ -88,8 +46,7 @@ int main(int argc, char *argv[]) {
     printf("SHA-512 Calculator\n");
 
     /*
-     * x picks out the 1s and 0s from the corresponding position
-     * where X has 0s picks out the 1s and 0s in z.
+     * x picks out the 1s and 0s from the corresponding position where X has 0s picks out the 1s and 0s in z.
      * Use x to choose bits from y & z and merge them together.
     */
     WORD x = 0xF1234567;
@@ -99,10 +56,12 @@ int main(int argc, char *argv[]) {
     WORD ans;
 
     ans = CH(x, y, z);
+    // formatting the outputs of the functions
+    // Ch function
     printf("Ch(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
 
     ans = MAJ(x, y, z);
-    // formatting the outputs of the functions
+    // Maj function
     printf("Maj(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
 
     // ROT functions
