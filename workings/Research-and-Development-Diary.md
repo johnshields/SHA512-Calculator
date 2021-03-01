@@ -43,7 +43,7 @@ This week the [theory side of automata](https://web.microsoftstream.com/video/11
 ```
 
 ## Week Five
-Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-472a-92d3-afc0aa7a060b) the functions for ROTR, ROTL and SIGMAS were done. These functions along with Ch and Maj operate on 64-bit words, which are represented as x, y, and z. The result of each function is a new 64-bit word.
+Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-472a-92d3-afc0aa7a060b) the functions for ROTR, ROTL and SIGMAS were done for SHA-256. Shortly after I applied these functions to SHA-512 for the program. These functions along with Ch and Maj operate on 64-bit words, which are represented as x, y, and z. The result of each function is a new 64-bit word.
 
 ![funcs](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
 
