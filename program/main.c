@@ -17,6 +17,7 @@
 #define WORD uint64_t
 #define PF PRIX64
 
+// ROT functions
 // Page 5 of [1] for Bitwise Operators.
 // The rotate right (circular right shift) operation ROTR n (x),
 // where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
@@ -31,16 +32,15 @@
 // Page 10 - [1].
 #define CH(x, y, z) (x & y) ^ (~x & z)
 #define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
-
+// SIGMA functions
 #define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
 #define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
 #define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
 #define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
 
 /*
- * Page 12 of secure hash standard.
  * This const represents the first sixty-four bits of the fractional parts of the cube roots of the
- * first eighty prime numbers. In hex, these constant words are (from left to right). [1]
+ * first eighty prime numbers. In hex, these constant words are (from left to right). [1] (Page 12)
  */
 const WORD K[] = {
         0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
@@ -86,9 +86,11 @@ int main(int argc, char *argv[]) {
     // formatting the outputs of the functions
     printf("Maj(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
 
+    // ROT functions
     printf("ROTL(%08" PF " -> %08" PF "\n", x, ROTL(x, 4));
     printf("ROTR(%08" PF " -> %08" PF "\n", x, ROTR(x, 4));
     printf("SHR(%08" PF " -> %08" PF "\n", x, SHR(x, 4));
+    // SIGMA functions
     printf("SIG0(%08" PF " -> %08" PF "\n", x, SIG0(x));
     printf("SIG1(%08" PF " -> %08" PF "\n", x, SIG1(x));
     printf("Sig0(%08" PF " -> %08" PF "\n", x, Sig0(x));

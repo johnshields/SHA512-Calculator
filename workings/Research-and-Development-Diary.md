@@ -43,23 +43,23 @@ This week the [theory side of automata](https://web.microsoftstream.com/video/11
 ```
 
 ## Week Five
-Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-472a-92d3-afc0aa7a060b) the functions for ROTR, ROTL and SIGMAS. These functions along with Ch and Maj operate on 64-bit words, which are represented as x, y, and z. The result of each function is a new 64-bit word.
+Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-472a-92d3-afc0aa7a060b) the functions for ROTR, ROTL and SIGMAS were done. These functions along with Ch and Maj operate on 64-bit words, which are represented as x, y, and z. The result of each function is a new 64-bit word.
 
 ![funcs](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
 
-* The rotate left (circular left shift) operation, ROTL n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 9)
-
-* The rotate right (circular right shift) operation ROTR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+* The rotate right (circular right shift) operation ROTR n (x), where x is a w-bit word and n is an integer with 0 < n < w.  [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 8)
 
 
-* The right shift operation SHR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+* The right shift operation SHR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 8)
+
+* The rotate left (circular left shift) operation, ROTL n (x), where x is a w-bit word and n is an integer with 0 < n < w.  [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 9)
 
 #### ROT functions
 
 ```c
-#define ROTL(x, n) (x<<n) | (x>>(W-n))
 #define ROTR(x, n) (x>>n) | (x<<(W-n))
 #define SHR(x, n) x>>n
+#define ROTL(x, n) (x<<n) | (x>>(W-n))
 ```
 #### SIGMA functions
 
