@@ -13,15 +13,22 @@
 #include <inttypes.h>
 
 #define W 64
+// A group of 64 bits (8 bytes). [1] (Page 4)
 #define WORD uint64_t
 #define PF PRIX64
 
-// Page 5 of the secure hash standard. [1]
-#define ROTL(x, n) (x<<n) | (x>>(W-n))
+// Page 5 of [1] for Bitwise Operators.
+// The rotate right (circular right shift) operation ROTR n (x),
+// where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 #define ROTR(x, n) (x>>n) | (x<<(W-n))
+// The right shift operation SHR n (x),
+// where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 #define SHR(x, n) x>>n
+// The rotate left (circular left shift) operation, ROTL n (x),
+// where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 9)
+#define ROTL(x, n) (x<<n) | (x>>(W-n))
 
-// Page 10 of the secure hash standard. [1]
+// Page 10 - [1].
 #define CH(x, y, z) (x & y) ^ (~x & z)
 #define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
 
@@ -87,7 +94,7 @@ int main(int argc, char *argv[]) {
     printf("Sig0(%08" PF " -> %08" PF "\n", x, Sig0(x));
     printf("Sig1(%08" PF " -> %08" PF "\n", x, Sig1(x));
 
-    printf("K[0] = %08" PF "\n K[79] = %08" PF "\n", K[1], K[79]);
+    printf("K[1] = %08" PF "\nK[79] = %08" PF "\n", K[1], K[79]);
 
     return 0;
 }

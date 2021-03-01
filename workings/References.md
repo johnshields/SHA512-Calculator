@@ -1,4 +1,4 @@
-## References & Resources 
+## References & Resources
 1. [*Secure Hash Standard*, Quynh H. Dang](https://www.nist.gov/publications/secure-hash-standard)
 2. [*Secure Hash Algorithms*, Brilliant.org](https://brilliant.org/wiki/secure-hashing-algorithms/)
 3. [*Mining Bitcoin with pencil and paper: 0.67 hashes per day*, Ken Shirriff's blog](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html)
@@ -8,4 +8,4 @@
 7. [*Secure Hash Algorithm (SHA) 512*, Anny Kartika Sari](https://www.youtube.com/watch?v=Q0MSYPlGHyo&t=372s&ab_channel=AnnyKartikaSari)
 8. [*getopt - Unix-like operating system command](https://g.co/kgs/aeVskU)
 9. [*Bitwise Operators in C/C++](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
-10.[*C Bitwise Operators: AND, OR, XOR, Shift & Complement](https://www.guru99.com/c-bitwise-operators.html)
+10. [*C Bitwise Operators: AND, OR, XOR, Shift & Complement](https://www.guru99.com/c-bitwise-operators.html)

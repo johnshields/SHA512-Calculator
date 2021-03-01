@@ -4,9 +4,9 @@ All weekly Labs are located in [this repository](https://github.com/johnshields/
 
 ***
 ## Week One
-In order to begin this project, a GitHub repository was set up. Then an environment was set up for the program. This consists of a [subsystem (WSL2)](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) that works with a [Ubuntu Terminal](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) and [Visual Studio Code](https://code.visualstudio.com/). I also have this set up with [JetBrains' CLion](https://www.jetbrains.com/clion/download) as I am comfortable with using their IDE tools. 
+In order to begin this project, a GitHub repository was set up. Then an environment was set up for the program. This consists of a [subsystem (WSL2)](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) that works with a [Ubuntu Terminal](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) and [Visual Studio Code](https://code.visualstudio.com/). I also have this set up with [JetBrains' CLion](https://www.jetbrains.com/clion/download) as I am comfortable with using their IDE tools.
 
-After setting up the environment I decided to do some [research](https://github.com/johnshields/SHA512-Calculator/wiki/Research) on the Secure Hash Standard and Secure Hash Algorithms. I found good resources that I believe will aid me in understanding and developing the program. I believe my main resources will be these three. 
+After setting up the environment I decided to do some [research](https://github.com/johnshields/SHA512-Calculator/wiki/Research) on the Secure Hash Standard and Secure Hash Algorithms. I found good resources that I believe will aid me in understanding and developing the program. I believe my main resources will be these three.
 1. [*Secure Hash Standard*, Quynh H. Dang](https://www.nist.gov/publications/secure-hash-standard)
 2. [*Efficient Implementation of the SHA-512 Hash Function for 8-bit AVR Microcontrollers*](https://core.ac.uk/download/pdf/186473296.pdf)
 3. [*US Secure Hash Algorithms*](https://tools.ietf.org/pdf/rfc4634.pdf)
@@ -20,14 +20,13 @@ To get a better understanding of this project I watched videos on YouTube and fo
 Also this week the first [lab](https://web.microsoftstream.com/video/9e7f870c-309e-43eb-805e-ea4e7ee719e1) on [C bit operations](https://github.com/johnshields/TOA-Labs/blob/main/bit_operations/main.c) was done, and I believe I am beginning to grasp a concept for this project.
 
 ## Week Two
-This week the Lab on [Bit Operations](https://github.com/johnshields/TOA-Labs/blob/main/bit_operations/main.c) was finished. What I mainly learned from the Lab is how to use the unary, binary, and ternary operators. I played around with them a lot by changing the ints and breaking apart the functions to understand how these operators all work. Also, this week in the Labs it was said that pages 24-26 of the [Secure Hash Standard](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) describe the algorithm for the SHA-512. I had looked over this last week but I looked over it again to get a better understanding. 
+This week the Lab on [Bit Operations](https://github.com/johnshields/TOA-Labs/blob/main/bit_operations/main.c) was finished. What I mainly learned from the Lab is how to use the unary, binary, and ternary operators. I played around with them a lot by changing the ints and breaking apart the functions to understand how these operators all work. Also, this week in the Labs it was said that pages 24-26 of the [Secure Hash Standard](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) describe the algorithm for the SHA-512. I had looked over this last week but I looked over it again to get a better understanding.
 
 ## Week Three
 This week in the [labs](https://login.microsoftonline.com/common/oauth2/authorize?client_id=cf53fce8-def6-4aeb-8d30-b158e7b1cf83&response_mode=form_post&response_type=code+id_token&scope=openid+profile&state=OpenIdConnect.AuthenticationProperties%3dAQAAAAIAAAAJLnJlZGlyZWN0cGh0dHBzOi8vd2ViLm1pY3Jvc29mdHN0cmVhbS5jb20vdmlkZW8vZmJjNDVkYWQtMDQ4ZS00YmNkLWJjYjktOWVmNDdmMjEzNGI5P3JlZmVycmVyPWh0dHBzOi8vbGVhcm5vbmxpbmUuZ21pdC5pZS8Ibm9uY2VLZXmbATM0OFRJRE15UFFGT05NdnJDWDFhaDZnYjV1V0twMXd1cndBblhHSk9sdmhGNEY5dng0TDdTZHpXLW82d2l3RWJfNWJEUm0tM2YxZWdBcHdLRkFFRlBubzlnTllNMUlCdEVMeHNoOV8tQzcxZ0NlWDVfYXBra09EZ2huX1BLck9BalpJTEdQVE8yVDdNZnJ2XzR3cV9OZ0h4SzBv&nonce=637501369895087745.ODU3YjcwMzUtM2RmNC00M2M1LTk5MjItZmU4Mjc1MWQzYTM2ZWMxOGMwOTMtNzMzZi00NWU2LWFlOWYtNmUyYzdiYTQwYjQ1&nonceKey=OpenIdConnect.nonce.1XDpLvM6x160r5%2f24j6FBPFZXmJj9ZBe9F6aLx8uzqM%3d&site_id=500453&redirect_uri=https%3a%2f%2fweb.microsoftstream.com%2f&post_logout_redirect_uri=https%3a%2f%2fproducts.office.com%2fmicrosoft-stream&msafed=0&prompt=none) focused on dealing with command line arguments in C using getopt, a C library function used to parse command-line options of the Unix/POSIX style. Also, in the labs, [Turing's work on computability](https://web.microsoftstream.com/video/d13ae4c9-9ec6-47ce-8ab4-8e9c34b190a9) was looked into as it relates to work in this module in many ways. As well as Turning's work, in the labs, [Chomsky's work on formal languages](https://web.microsoftstream.com/video/51cd7c6b-1b13-4ef0-bcc2-d9f62f7b84a6) were also looked at to see how it relates to this module's work.
 
 ## Week Four
-This week the [theory side of automata](https://web.microsoftstream.com/video/11a99321-8e4e-4456-9f11-8b2ca1787f29) was look into and how they relate to formal languages. For [partical work](https://web.microsoftstream.com/video/9d3237fb-55e9-4159-9e08-aa2e086495e5) the functions `Ch` and `Maj` where done for the SHA-256. I got it done for SHA-512 for the main program and added in the command line arguments from last week. Next step is to work out the functions for ROTR & SHR.
-
+This week the [theory side of automata](https://web.microsoftstream.com/video/11a99321-8e4e-4456-9f11-8b2ca1787f29) was look into and how they relate to formal languages. For [partical work](https://web.microsoftstream.com/video/9d3237fb-55e9-4159-9e08-aa2e086495e5) the functions `Ch` and `Maj` where done for the SHA-256. I got it done for SHA-512 for the main program and added in the command line arguments from last week. Next step is to work out the functions for ROTR, ROTL and SIGMAS.
 
 ```c
 #define WORD uint64_t
@@ -35,17 +34,40 @@ This week the [theory side of automata](https://web.microsoftstream.com/video/11
 
 ![ch](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
 ```c
-WORD Ch(WORD x, WORD y, WORD z) {
-    return (x & y) ^ (~x & z);
-}
+#define CH(x, y, z) (x & y) ^ (~x & z)
 ```
 
 ![maj](https://user-images.githubusercontent.com/26766163/109430281-76634680-79f8-11eb-8a50-4f24855efa26.png)
 ```c
-WORD Maj(WORD x, WORD y, WORD z) {
-    return (x & y) ^ (~x & z) ^ (y & z);
-}
+#define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
 ```
 
+## Week Five
+Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-472a-92d3-afc0aa7a060b) the functions for ROTR, ROTL and SIGMAS. These functions along with Ch and Maj operate on 64-bit words, which are represented as x, y, and z. The result of each function is a new 64-bit word.
+
+![funcs](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
+
+* The rotate left (circular left shift) operation, ROTL n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 9)
+
+* The rotate right (circular right shift) operation ROTR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+
+
+* The right shift operation SHR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+
+#### ROT functions
+
+```c
+#define ROTL(x, n) (x<<n) | (x>>(W-n))
+#define ROTR(x, n) (x>>n) | (x<<(W-n))
+#define SHR(x, n) x>>n
+```
+#### SIGMA functions
+
+```c
+#define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
+#define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
+#define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
+#define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
+```
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
