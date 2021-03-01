@@ -25,10 +25,10 @@
 #define CH(x, y, z) (x & y) ^ (~x & z)
 #define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
 
-#define SIG0(x) ROTR(x, 2) ^ ROTR(x, 13) ^ ROTR(x, 22)
-#define SIG1(x) ROTR(x, 6) ^ ROTR(x, 11) ^ ROTR(x, 25)
-#define Sig0(x) ROTR(x, 7) ^ ROTR(x, 18) ^ SHR(x, 22)
-#define Sig1(x) ROTR(x, 17) ^ ROTR(x, 19) ^ SHR(x, 10)
+#define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
+#define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
+#define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
+#define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
 
 /*
  * Page 12 of secure hash standard.
@@ -76,6 +76,7 @@ int main(int argc, char *argv[]) {
     printf("Ch(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
 
     ans = MAJ(x, y, z);
+    // formatting the outputs of the functions
     printf("Maj(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
 
     printf("ROTL(%08" PF " -> %08" PF "\n", x, ROTL(x, 4));
@@ -86,7 +87,7 @@ int main(int argc, char *argv[]) {
     printf("Sig0(%08" PF " -> %08" PF "\n", x, Sig0(x));
     printf("Sig1(%08" PF " -> %08" PF "\n", x, Sig1(x));
 
-    printf("K[0] = %08" PF "\tK[63] = %08" PF "\n", K[0], K[63]);
+    printf("K[0] = %08" PF "\n K[79] = %08" PF "\n", K[1], K[79]);
 
     return 0;
 }
