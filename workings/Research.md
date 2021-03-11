@@ -11,7 +11,7 @@ functions that can process a message to produce a condensed representation calle
 digest. These algorithms enable the determination of a message’s integrity: any change to the
 message will, with a very high probability, result in a different message digest. This property is
 useful in the generation and verification of digital signatures and message authentication codes,
-and in the generation of random numbers or bits. 
+and in the generation of random numbers or bits.
 
 The algorithms differ in terms of the size of the blocks and words of data that are
 used during hashing or message digest sizes. [[1]](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
@@ -41,6 +41,15 @@ Six logical functions are used in SHA-384, SHA-512, SHA-512/224, and SHA-512/256
 
 [[9]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
 
+### Six Logical Functions
+![funcs](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
+
+* The rotate right (circular right shift) operation ROTR n (x), where x is a w-bit word and n is an integer with 0 < n < w.  [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 8)
+
+
+* The right shift operation SHR n (x), where x is a w-bit word and n is an integer with 0 < n < w. [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 8)
+
+* The rotate left (circular left shift) operation, ROTL n (x), where x is a w-bit word and n is an integer with 0 < n < w.  [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 9)
 
 ## Main Questions
 ### Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
@@ -52,4 +61,4 @@ Six logical functions are used in SHA-384, SHA-512, SHA-512/224, and SHA-512/256
 ### How difficult is it to find a hash digest beginning with at least twelve zeros?
 
 ***
-###### END OF RESEARCH 
+###### END OF RESEARCH
