@@ -4,7 +4,7 @@
  * A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
  *
  * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
- *  * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+ * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
  * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
  */
 
@@ -82,6 +82,14 @@ const WORD K[] = {
         0x06f067aa72176fba, 0x0a637dc5a2c898a6, 0x113f9804bef90dae, 0x1b710b35131c471b,
         0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c,
         0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
+};
+
+// Preprocessing
+// Section 5.3.5 - [1] (Page 15)
+// initial hash value 'H' - eight 64-bit words
+WORD H[] = {
+        0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
+        0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179
 };
 
 int main(int argc, char *argv[]) {
