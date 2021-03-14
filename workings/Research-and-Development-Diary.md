@@ -69,5 +69,10 @@ Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-
 #define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
 #define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
 ```
+
+## Week Six
+This week for [practical work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pre_process.c), pre-processing and message padding were done to calculate how many bytes and bits are read from a file. I also added in the initial hash value 'H' for eight 64-bit words. This will be used later for pre-processing.
+
+
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
