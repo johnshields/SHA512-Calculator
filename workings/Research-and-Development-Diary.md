@@ -74,6 +74,6 @@ Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-
 This week for [practical work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pre_process.c), pre-processing and message padding were done to calculate how many bytes and bits are read from a file. I also added in the initial hash value 'H' for eight 64-bit words. This will be used later for pre-processing.
 
 ## Week Seven
-This week more [work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pre_process.c) on pre-processing was done in the labs. After this was done I tried working it out to be able to put it into the main program. This will take some more work but first I need to understand it more. In order to achieve this I need to do more research.
+This week more [work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pre_process.c) on pre-processing was done in the labs. After this was done I tried working it out to be able to put it into the main program. This will take some more work but first I need to understand it more. In order to achieve this I need to do more [research](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md#pre-processing-and-padding-messages).
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
