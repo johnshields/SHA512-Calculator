@@ -51,6 +51,27 @@ Six logical functions are used in SHA-384, SHA-512, SHA-512/224, and SHA-512/256
 
 * The rotate left (circular left shift) operation, ROTL n (x), where x is a w-bit word and n is an integer with 0 < n < w.  [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 9)
 
+### Pre-processing and Padding Messages
+For SHA-384, SHA-512, SHA-512/224 and SHA-512/256, the message and its padding are
+parsed into N 1024-bit blocks.  Since the 1024 bits of the input block may be
+expressed as sixteen 64-bit words, the first 64 bits of message block i are denoted
+M0^i, the next 64 bits are M1^i, and so on up to M15^i. 
+
+[[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 14)
+
+The hash functions specified herein are used to compute a message digest for a message or data file provided as input. 
+The message or data file should be considered to be a bit string. 
+The message's length is the number of bits in the message (the empty message has a length of 0). 
+If the number of bits in a message is a multiple of 8, we can represent the message in hex for compactness. 
+The purpose of message padding is to make the total length of a padded message a multiple of 512 for SHA-224 and SHA-256 or a multiple of 1024 for SHA-384 and SHA-512.
+
+The following specifies how this padding shall be performed. 
+As a summary, a "1" followed by several "0"s followed by a 64-bit or 128-bit integer are appended to the end of the message to produce a padded message of length 512*n or 1024*n. 
+The minimum number of "0"s necessary to meet this criterion is used. The appended integer is the length of the original message. 
+The hash function then processes the padded message as n 512-bit or 1024-bit blocks.
+
+[[5]](https://tools.ietf.org/pdf/rfc4634.pdf) (Page 61)
+
 ## Main Questions
 ### Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
 * It is a one-way function
