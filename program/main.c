@@ -94,6 +94,8 @@ WORD H[] = {
         0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179
 };
 
+// TODO - Block of 1024
+
 int main(int argc, char *argv[]) {
     printf("SHA-512 Calculator\n");
 
