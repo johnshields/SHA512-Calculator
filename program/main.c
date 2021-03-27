@@ -6,34 +6,37 @@
  * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
  * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
  * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
+ * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
+ * https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
+ * https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
  */
 
 #include <stdio.h>
 #include <inttypes.h>
 
-#define W 64
 // A group of 64 bits (8 bytes). [1] (Page 4)
 #define WORD uint64_t
-#define PF PRIX64
+#define PF PRIx64
+#define BYTE uint8_t
 
 /*
- * Six Logical Functions.
+ * Logical Functions.
  *
  * ROT functions - [1] (Page 5)
  * The rotate right (circular right shift) operation ROTR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define ROTR(x, n) (x>>n) | (x<<(W-n))
+#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x)*8) - _n)))
 /*
  * The right shift operation SHR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define SHR(x, n) x>>n
+#define SHR(_x, _n) (_x >> _n)
 /*
  * The rotate left (circular left shift) operation, ROTL n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 9)
 */
-#define ROTL(x, n) (x<<n) | (x>>(W-n))
+#define ROTL(_x, _n) ((_x << _n) | (_x >> ((sizeof(_x)*8) - _n)))
 
 /*
  * Ch & Maj - [1] Page 11.
@@ -43,19 +46,34 @@
  * For each bit index, that result bit is according to the bit from y or z  at this index,
  * depending on if the bit from x is 1 or 0. [3]
  */
-#define CH(x, y, z) (x & y) ^ (~x & z)
+#define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
 
 /*
  * Maj stands for majority: for each bit index, that result bit is according to the majority
  * of the three inputs bits for x y and z at this index. [3]
  */
-#define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
+#define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
 
 // SIGMA functions - [1] (Page 11)
 #define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
 #define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
 #define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
 #define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
+
+// SHA-512 works on blocks of 1024 bits.
+union Block {
+    // 8 x 128 = 1024 - dealing with block as bytes.
+    BYTE bytes[128];
+    // 32 x 32 = 1024 - dealing with block as words.
+    WORD words[32];
+    // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
+    uint64_t sixF[16];
+};
+
+// For keeping track of where we are with the input message/padding.
+enum Status {
+    READ, PAD, END
+};
 
 /*
  * This const represents the first sixty-four bits of the fractional parts of the cube roots of the
@@ -84,51 +102,45 @@ const WORD K[] = {
         0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
 
-/*
- * Preprocessing
- * Section 5.3.5 - [1] (Page 15)
- * initial hash value 'H' - eight 64-bit words
- */
-WORD H[] = {
-        0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
-        0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179
-};
-
-// TODO - Block of 1024
-
 int main(int argc, char *argv[]) {
     printf("SHA-512 Calculator\n");
 
     /*
-     * x picks out the 1s and 0s from the corresponding position where X has 0s picks out the 1s and 0s in z.
-     * Use x to choose bits from y & z and merge them together.
-    */
-    WORD x = 0xF1234567;
-    WORD y = 0x0A0A0A0A;
-    WORD z = 0xB0B0B0B0;
+     * Preprocessing
+     * Section 5.3.5 - [1] (Page 15)
+     * initial hash value 'H' - eight 64-bit words
+     */
+    WORD H[] = {
+            0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
+            0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179
+    };
 
-    WORD ans;
+    // File pointer for reading.
+    FILE *f;
 
-    ans = CH(x, y, z);
-    // formatting the outputs of the functions
-    // Ch function
-    printf("Ch(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
+    // Error checking to show if no file was specified in the cli argument.
+    if (argc != 2) {
+        printf("[ALERT] expected filename in argument \n");
+        return 1;
+    }
 
-    ans = MAJ(x, y, z);
-    // Maj function
-    printf("Maj(%08"PF",%08"PF",%08"PF")=%08"PF"\n", x, y, z, ans);
+    // Open file from command line for reading.
+    if (!(f = fopen(argv[1], "r"))) {
+    //if (!(f = fopen("input.txt", "w+"))) {
+        printf("[ALERT] Not able to read file %s. \n", argv[1]);
+        return 1;
+    }
 
-    // ROT functions
-    printf("ROTL(%08" PF " -> %08" PF "\n", x, ROTL(x, 4));
-    printf("ROTR(%08" PF " -> %08" PF "\n", x, ROTR(x, 4));
-    printf("SHR(%08" PF " -> %08" PF "\n", x, SHR(x, 4));
-    // SIGMA functions
-    printf("SIG0(%08" PF " -> %08" PF "\n", x, SIG0(x));
-    printf("SIG1(%08" PF " -> %08" PF "\n", x, SIG1(x));
-    printf("Sig0(%08" PF " -> %08" PF "\n", x, Sig0(x));
-    printf("Sig1(%08" PF " -> %08" PF "\n", x, Sig1(x));
-    // const
-    printf("K[1] = %08" PF "\nK[79] = %08" PF "\n", K[1], K[79]);
+    // Calculate the SHA-512 of f.
+    // sha512(f, H);
+
+    // Print the final SHA-512 hash.
+    for (int i = 0; i < 8; i++)
+        printf("%08" PF, H[i]);
+    printf("\n");
+
+    // Close the file.
+    fclose(f);
 
     return 0;
 }
