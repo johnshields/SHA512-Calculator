@@ -1,6 +1,6 @@
 <h1 align="center">Research and Development Diary</h1>
 
-All weekly Labs are located in [this repository](https://github.com/johnshields/TOA-Labs).
+All weekly Labs are located in [this repository](https://github.com/johnshields/SHA-256).
 
 ***
 ## Week One
@@ -34,12 +34,12 @@ This week the [theory side of automata](https://web.microsoftstream.com/video/11
 
 ![ch](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
 ```c
-#define CH(x, y, z) (x & y) ^ (~x & z)
+#define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
 ```
 
 ![maj](https://user-images.githubusercontent.com/26766163/109430281-76634680-79f8-11eb-8a50-4f24855efa26.png)
 ```c
-#define MAJ(x, y, z) (x & y) ^ (x & z) ^ (y & z)
+#define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
 ```
 
 ## Week Five
@@ -57,9 +57,9 @@ Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-
 #### ROT functions
 
 ```c
-#define ROTR(x, n) (x>>n) | (x<<(W-n))
-#define SHR(x, n) x>>n
-#define ROTL(x, n) (x<<n) | (x>>(W-n))
+#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x)*8) - _n)))
+#define SHR(_x, _n) (_x >> _n)
+#define ROTL(_x, _n) ((_x << _n) | (_x >> ((sizeof(_x)*8) - _n)))
 ```
 #### SIGMA functions
 
@@ -78,6 +78,7 @@ This week more [work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pr
 
 ## Week Eight
 This week concludes the work on the SHA-256 algorithm by putting the week-by-week work on command line arguments, bit operations, logical functions, pre-processing, and message padding altogether with the addition of getting the next hash and endianness.
+The complete SHA-256 program is located [here](https://github.com/johnshields/SHA-256/blob/main/program/sha256.c).
 
 Now that the SHA-256 is complete, I can now use it to help me finish the SHA-512 algorithm. I have begun by setting up the necessary structure, next is to implement the functions for the next block, next hash, and sha512.
 
