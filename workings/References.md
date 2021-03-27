@@ -9,3 +9,4 @@
 8. [*getopt - Unix-like operating system command](https://g.co/kgs/aeVskU)
 9. [*Bitwise Operators in C/C++](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
 10. [*C Bitwise Operators: AND, OR, XOR, Shift & Complement](https://www.guru99.com/c-bitwise-operators.html)
+11. [*Writing endian-independent code in C*, IBM Developer](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
