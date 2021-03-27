@@ -61,13 +61,13 @@ M0^i, the next 64 bits are M1^i, and so on up to M15^i.
 
 The hash functions are used to generate a message digest from an input message or data file.
 A bit string should be used to describe the message or data file.
-The length of a message is the number of bits in it (the empty message has a length of 0).
+The length of a message is the number of bits (the empty message has a length of 0).
 A message in hex for compactness may represent if the number of bits in it is a multiple of 8.
 Message padding is used to render a padded message's total length a multiple of 512 for SHA-224 and SHA-256, or a multiple of 1024 for SHA-384 and SHA-512.
 
 A "1" is appended to the end of the message, followed by multiple "0s," followed by a 64-bit or 128-bit integer, resulting in a padded message of length 512*n or 1024*n.
-The criterion is met by using the smallest number of "0"s available. The length of the original message is represented by the appended integer.
-The padded message is then processed by the hash function as n 512-bit or 1024-bit blocks.
+The criterion is met by using the smallest number of "0"s available. The appended integer represents the length of the original message.
+The hash function then processes the padded message as n 512-bit or 1024-bit blocks.
 
 [[5]](https://tools.ietf.org/pdf/rfc4634.pdf) (Page 61)
 

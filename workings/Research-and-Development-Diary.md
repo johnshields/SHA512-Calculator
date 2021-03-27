@@ -75,5 +75,11 @@ This week for [practical work](https://github.com/johnshields/TOA-Labs/blob/main
 
 ## Week Seven
 This week more [work](https://github.com/johnshields/TOA-Labs/blob/main/funcs/pre_process.c) on pre-processing was done in the labs. After this was done I tried working it out to be able to put it into the main program. This will take some more work but first I need to understand it more. In order to achieve this I need to do more [research](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md#pre-processing-and-padding-messages).
+
+## Week Eight
+This week concludes the work on the SHA-256 algorithm by putting the week-by-week work on command line arguments, bit operations, logical functions, pre-processing, and message padding altogether with the addition of getting the next hash and endianness.
+
+Now that the SHA-256 is complete, I can now use it to help me finish the SHA-512 algorithm. I have begun by setting up the necessary structure, next is to implement the functions for the next block, next hash, and sha512.
+
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
