@@ -7,17 +7,22 @@
  * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
  * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
  * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
- * https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
- * https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+ * [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
+ * [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
  */
 
 #include <stdio.h>
 #include <inttypes.h>
+#include <byteswap.h>
 
 // A group of 64 bits (8 bytes). [1] (Page 4)
 #define WORD uint64_t
 #define PF PRIx64
 #define BYTE uint8_t
+
+// [4] Endianness
+const int _i = 1;
+#define is_little_endian() ((*(char*)&_i) != 0) // char = 8 bits
 
 /*
  * Logical Functions.
@@ -101,6 +106,72 @@ const WORD K[] = {
         0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c,
         0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
+
+/*
+ * Returns 1 if it created a new block from original message or padding.
+ * Returns 0 if all padded message has already been consumed.
+ * Get Next Block. [5] & [6]
+*/
+int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
+    // number of bytes read.
+    size_t num_of_bytes;
+
+    if (*S == END) {
+        return 0;
+    } else if (*S == READ) {
+        // Try to read 128 bytes from the input file.
+        num_of_bytes = fread(M->bytes, 1, 128, f);
+        // Calculate the total bits read so far.
+        *num_of_bits = *num_of_bits + (8 * num_of_bytes);
+        // Enough room for padding.
+        if (num_of_bytes == 128) {
+            // This happens when it is possible to read 128 bytes from f.
+            return 1;
+        } else if (num_of_bytes < 112) {
+            // This happens when there is have enough roof for all the padding.
+            // Append a 1 bit (and seven 0 bits to make a full byte).
+            M->bytes[num_of_bytes] = 0x80; // In bits: 10000000.
+            // Append enough 0 bits, leaving 128 at the end.
+            for (num_of_bytes++; num_of_bytes < 112; num_of_bytes++) {
+                M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
+            }
+            // Append length of original input - Check endianness.
+            M->sixF[7] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
+            // Say this is the last block.
+            *S = END;
+        } else {
+            // Got to the end of the input message and not enough room
+            // in this block for all padding.
+            // Append a 1 bit (and seven 0 bits to make a full byte.)
+            M->bytes[num_of_bytes] = 0x80;
+            // Append 0 bits.
+            for (num_of_bytes++; num_of_bytes < 128; num_of_bytes++) {
+                // Error: trying to write to
+                M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
+            }
+            // Change the status to PAD.
+            *S = PAD;
+        }
+    } else if (*S == PAD) {
+        // Append 0 bits.
+        for (num_of_bytes = 0; num_of_bytes < 112; num_of_bytes++) {
+            M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
+        }
+        // Append num_of_bits as an integer - Check endian
+        //M->sixF[7] = *num_of_bits;
+        M->sixF[7] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
+        // Change the status to END.
+        *S = END;
+    }
+
+    // swap the byte order of the words if is_little_endian
+    if (is_little_endian()) {
+        for (int i = 0; i < 16; i++) {
+            M->words[i] = bswap_32(M->words[i]);
+        }
+    }
+    return 1;
+}
 
 int main(int argc, char *argv[]) {
     printf("SHA-512 Calculator\n");
