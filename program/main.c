@@ -31,7 +31,7 @@ const int _i = 1;
  * The rotate right (circular right shift) operation ROTR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x) * 8) - _n)))
+#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x)*8) - _n)))
 /*
  * The right shift operation SHR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
@@ -62,11 +62,8 @@ const int _i = 1;
 
 // SHA-512 works on blocks of 1024 bits.
 union Block {
-    // 8 x 128 = 1024 - dealing with block as bytes.
     BYTE bytes[128];
-    // 32 x 32 = 1024 - dealing with block as words.
-    WORD words[32];
-    // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
+    WORD words[16];
     uint64_t sixF[16];
 };
 
@@ -117,7 +114,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
         // Try to read 128 bytes from the input file.
         num_of_bytes = fread(M->bytes, 1, 128, f);
         // Calculate the total bits read so far.
-        *num_of_bits = *num_of_bits + (16 * num_of_bytes);
+        *num_of_bits = *num_of_bits + (8 * num_of_bytes);
         // Enough room for padding.
         if (num_of_bytes == 128) {
             // This happens when it is possible to read 128 bytes from f.
@@ -263,13 +260,13 @@ int main(int argc, char *argv[]) {
 
     // Error checking to show if no file was specified in the cli argument.
     if (argc != 2) {
-        printf("[ALERT] expected filename in argument \n");
+        printf("expected filename in argument \n");
         return 1;
     }
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        printf("[ALERT] Not able to read file %s. \n", argv[1]);
+        printf("Not able to read file %s. \n", argv[1]);
         return 1;
     }
 
@@ -278,7 +275,7 @@ int main(int argc, char *argv[]) {
 
     // Print the final SHA-512 hash.
     for (int i = 0; i < 8; i++)
-        printf("%08" PF, H[i]);
+        printf("%016" PF, H[i]);
     printf("\n");
 
     // Close the file.
