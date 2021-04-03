@@ -31,7 +31,7 @@ const int _i = 1;
  * The rotate right (circular right shift) operation ROTR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x)*8) - _n)))
+#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x) * 8) - _n)))
 /*
  * The right shift operation SHR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
@@ -55,10 +55,10 @@ const int _i = 1;
 #define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
 
 // SIGMA functions - [1] (Page 11)
-#define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
-#define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
-#define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
-#define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
+#define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
+#define SIG1(_x) (ROTR(_x, 14) ^ ROTR(_x, 18) ^ ROTR(_x, 41))
+#define Sig0(_x) (ROTR(_x, 1) ^ ROTR(_x, 8) ^ SHR(_x, 7))
+#define Sig1(_x) (ROTR(_x, 19) ^ ROTR(_x, 61) ^ SHR(_x, 6))
 
 // SHA-512 works on blocks of 1024 bits.
 union Block {
@@ -117,7 +117,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
         // Try to read 128 bytes from the input file.
         num_of_bytes = fread(M->bytes, 1, 128, f);
         // Calculate the total bits read so far.
-        *num_of_bits = *num_of_bits + (8 * num_of_bytes);
+        *num_of_bits = *num_of_bits + (16 * num_of_bytes);
         // Enough room for padding.
         if (num_of_bytes == 128) {
             // This happens when it is possible to read 128 bytes from f.
@@ -131,7 +131,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
                 M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
             }
             // Append length of original input - Check endianness.
-            M->sixF[7] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
+            M->sixF[15] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
             // Say this is the last block.
             *S = END;
         } else {
@@ -153,8 +153,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
             M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
         }
         // Append num_of_bits as an integer - Check endian
-        //M->sixF[7] = *num_of_bits;
-        M->sixF[7] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
+        M->sixF[15] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
         // Change the status to END.
         *S = END;
     }
@@ -168,6 +167,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
     return 1;
 }
 
+// SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
 // Get the next hash
 // designed to make it difficult to reverse the process - [5].
 int next_hash(union Block *M, WORD H[]) {
@@ -181,7 +181,7 @@ int next_hash(union Block *M, WORD H[]) {
     // Prepare the message schedule - [1] Section 6.4.2, part 1.
     for (t = 0; t < 16; t++)
         W[t] = M->words[t];
-    for (t = 16; t < 64; t++)
+    for (t = 16; t < 80; t++)
         W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
 
     // Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value.
@@ -242,16 +242,20 @@ int sha512(FILE *f, WORD H[]) {
 }
 
 int main(int argc, char *argv[]) {
-    //printf("SHA-512 Calculator\n");
-
     /*
      * Preprocessing
      * Section 5.3.5 - [1] (Page 15)
      * initial hash value 'H' - eight 64-bit words
      */
     WORD H[] = {
-            0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
-            0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179
     };
 
     // File pointer for reading.
@@ -265,7 +269,6 @@ int main(int argc, char *argv[]) {
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        //if (!(f = fopen("input.txt", "w+"))) {
         printf("[ALERT] Not able to read file %s. \n", argv[1]);
         return 1;
     }
