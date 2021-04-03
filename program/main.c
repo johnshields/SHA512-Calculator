@@ -223,8 +223,26 @@ int next_hash(union Block *M, WORD H[]) {
     return 0;
 }
 
+// The function that performs/orchestrates the SHA-512 algorithm on message f.
+int sha512(FILE *f, WORD H[]) {
+    // The current block.
+    union Block M;
+
+    // Total number of bits read.
+    uint64_t num_of_bits = 0;
+
+    // Current status of reading input.
+    enum Status S = READ;
+
+    // Loop through the (preprocessed) blocks.
+    while (next_block(f, &M, &S, &num_of_bits)) {
+        next_hash(&M, H);
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
-    printf("SHA-512 Calculator\n");
+    //printf("SHA-512 Calculator\n");
 
     /*
      * Preprocessing
@@ -253,7 +271,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Calculate the SHA-512 of f.
-    // sha512(f, H);
+    sha512(f, H);
 
     // Print the final SHA-512 hash.
     for (int i = 0; i < 8; i++)
@@ -265,3 +283,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
