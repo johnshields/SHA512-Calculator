@@ -15,7 +15,7 @@
 #include <inttypes.h>
 #include <byteswap.h>
 
-// A group of 64 bits (8 bytes). [1] (Page 4)
+// Words and bytes.
 #define WORD uint64_t
 #define PF PRIx64
 #define BYTE uint8_t
@@ -31,7 +31,7 @@ const int _i = 1;
  * The rotate right (circular right shift) operation ROTR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x)*8) - _n)))
+#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x) * 8) - _n)))
 /*
  * The right shift operation SHR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
@@ -73,7 +73,7 @@ enum Status {
 };
 
 /*
- * This const represents the first sixty-four bits of the fractional parts of the cube roots of the
+ * This const represents the first 64 bits of the fractional parts of the cube roots of the
  * first eighty prime numbers. In hex, these constant words are from left to right. [1] (Page 12)
  */
 const WORD K[] = {
@@ -120,7 +120,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
             // This happens when it is possible to read 128 bytes from f.
             return 1;
         } else if (num_of_bytes < 112) {
-            // This happens when there is have enough roof for all the padding.
+            // This happens when there is have enough room for all the padding.
             // Append a 1 bit (and seven 0 bits to make a full byte).
             M->bytes[num_of_bytes] = 0x80; // In bits: 10000000.
             // Append enough 0 bits, leaving 128 at the end.
@@ -206,7 +206,8 @@ int next_hash(union Block *M, WORD H[]) {
         a = T1 + T2;
     }
 
-    // Compute the ith intermediate hash value H(i) [1] Section 6.4.2, part 4.
+    // [1] Section 6.4.2, part 4.
+    // Compute the ith intermediate hash value H(i)
     // next hash from current message block and previous hash value
     H[0] = a + H[0];
     H[1] = b + H[1];
@@ -260,7 +261,7 @@ int main(int argc, char *argv[]) {
 
     // Error checking to show if no file was specified in the cli argument.
     if (argc != 2) {
-        printf("expected filename in argument \n");
+        printf("Expected filename in argument \n");
         return 1;
     }
 
