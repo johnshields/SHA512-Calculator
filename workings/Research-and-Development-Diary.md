@@ -82,5 +82,21 @@ The complete SHA-256 program is located [here](https://github.com/johnshields/SH
 
 Now that the SHA-256 is complete, I can now use it to help me finish the SHA-512 algorithm. I have begun by setting up the necessary structure, next is to implement the functions for the next block, next hash, and sha512.
 
+## Week Nine
+The SHA-512 algorithm is in place. However, it is not quite finished yet as the hashed output is incorrect. 
+
+As of now the output for `abc` is:
+
+```bash
+5b3b00839ea450dad75397c8b4f47a90745bd6f2c6b1f0660a59b4c027130088483e35478f6f5fc2fbc428956fbbfce9785632aecb7f23ce13926785359dc721
+```
+
+When it should be:
+
+```bash
+ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f
+```
+
+The output's number of bits is correct, but it seems the hashing process is being affected somehow. Will need to pinpoint this issue in order to have the program complete.
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
