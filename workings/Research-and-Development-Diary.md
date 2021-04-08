@@ -98,5 +98,30 @@ ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a8
 ```
 
 The output's number of bits is correct, but it seems the hashing process is being affected somehow. Will need to pinpoint this issue in order to have the program complete.
+
+## Week Ten
+I can confirm that the hash value is now correct. The problem came down to how I was swaping the bytes.
+
+Original I had:
+```c
+if (is_little_endian()) {
+    for (int i = 0; i < 16; i++) {
+        M->words[i] = bswap_34(M->words[i]);
+    }
+}
+```
+
+When it should have been:
+```c
+if (is_little_endian()) {
+    for (int i = 0; i < 16; i++) {
+        M->words[i] = bswap_64(M->words[i]);
+    }
+}
+```
+
+The SHA-512 program is officially complete.
+![image](https://user-images.githubusercontent.com/26766163/114074001-d1137c00-989b-11eb-9cb8-7be7bcc3634f.png)
+
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
