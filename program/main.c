@@ -158,7 +158,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
     // swap the byte order of the words if is_little_endian
     if (is_little_endian()) {
         for (int i = 0; i < 16; i++) {
-            M->words[i] = bswap_32(M->words[i]);
+            M->words[i] = bswap_64(M->words[i]);
         }
     }
     return 1;
