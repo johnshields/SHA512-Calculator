@@ -9,12 +9,8 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 
-# SHA-512 Calculator
-A repository for the main project for the module Theory of Algorithms.<br>
-A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
-
 # Project Details
-| **Project Title** | SHA-512 Calculator |
+| **Project Title** | SHA-512 Algorithm in C |
 | :------------- |:-------------|
 | **Course**              | BSc (Hons) in Software Development |
 | **Module**              | Theory Of Algorithms |
@@ -24,23 +20,32 @@ A program in the C programming language to calculate the SHA-512 (Secure Hash St
 
 ***
 
+# SHA-512 Calculator
+A repository for the main project for the module Theory of Algorithms.<br>
+A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
 
-## [Project Instructions](https://github.com/ianmcloughlin/theory-algos-project#what-to-do)
-In this project you must write a program in the C programming language to calculate the [SHA-512](https://www.nist.gov/publications/secure-hash-standard) value of an input file.
-Your program must take the name or path of the file as a command line argument and output the SHA512 digest of it.
-The program must be coded from scratch - you cannot use any external libraries other than what is included in the C standard library.
-Your program must compile using `gcc` or `clang` and you must include a `Makefile` which compiles it upon `make` being called in the project folder.
-You must also include tests which run upon `make test` being called, as will be described in lectures.
-You should also include in your repository an appropriate `.gitignore` file and a `README.md`.
+All weekly Labs for the module are located in [this repository](https://github.com/johnshields/SHA-256).
 
-***
-## Links to Project workings
-All weekly Labs are located in [this repository](https://github.com/johnshields/TOA-Labs).
+## Repository Contents
+* [Program](https://github.com/johnshields/SHA512-Calculator/tree/main/program)
+  - [main.c](https://github.com/johnshields/SHA512-Calculator/blob/main/program/main.c)
+    - Source code of the main program for the SHA-512 Algorithm.
+  - [input.txt](https://github.com/johnshields/SHA512-Calculator/blob/main/program/input.txt)
+    - Input file for command line argument when running program from a Makefile.
+* [Workings](https://github.com/johnshields/SHA512-Calculator/tree/main/workings)
+  - [images](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/images)
+    - Images for documentation.
+  - [resources](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/resources)
+    - Resources that aided the development of the program.
+  - [References.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md)
+    - URLs for citing
+  - [Research-and-Development-Diary.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research-and-Development-Diary.md)
+    - A Diary of how the program came altogether from week-by-week work.
+  - [Research.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md)
+    - Research undertook to understand the problem domain further.
+* [.gitignore](https://github.com/johnshields/SHA512-Calculator/blob/main/.gitignore)
+  - Files/Directories to ignore when committing to the Repository.
+* [README.md](https://github.com/johnshields/SHA512-Calculator/blob/main/README.md)
+  - Documentation of the programs Details
 
-All Research can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md).
-
-Research and Development Diary can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research-and-Development-Diary.md).
-
-All References and Resources can be found [HERE](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/References.md).
-***
 ###### END OF README
