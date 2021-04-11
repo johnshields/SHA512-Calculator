@@ -64,10 +64,10 @@ Following last weeks [work](https://web.microsoftstream.com/video/4584d6ab-ad5d-
 #### SIGMA functions
 
 ```c
-#define SIG0(x) ROTR(x, 28) ^ ROTR(x, 34) ^ ROTR(x, 39)
-#define SIG1(x) ROTR(x, 14) ^ ROTR(x, 18) ^ ROTR(x, 41)
-#define Sig0(x) ROTR(x, 1) ^ ROTR(x, 8) ^ SHR(x, 7)
-#define Sig1(x) ROTR(x, 19) ^ ROTR(x, 61) ^ SHR(x, 6)
+#define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
+#define SIG1(_x) (ROTR(_x, 14) ^ ROTR(_x, 18) ^ ROTR(_x, 41))
+#define Sig0(_x) (ROTR(_x, 1) ^ ROTR(_x, 8) ^ SHR(_x, 7))
+#define Sig1(_x) (ROTR(_x, 19) ^ ROTR(_x, 61) ^ SHR(_x, 6))
 ```
 
 ## Week Six
@@ -83,7 +83,7 @@ The complete SHA-256 program is located [here](https://github.com/johnshields/SH
 Now that the SHA-256 is complete, I can now use it to help me finish the SHA-512 algorithm. I have begun by setting up the necessary structure, next is to implement the functions for the next block, next hash, and sha512.
 
 ## Week Nine
-The SHA-512 algorithm is in place. However, it is not quite finished yet as the hashed output is incorrect. 
+The SHA-512 algorithm is in place. However, it is not quite finished yet as the hashed output is incorrect.
 
 As of now the output for `abc` is:
 
