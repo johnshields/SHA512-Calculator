@@ -3,7 +3,7 @@
 cmake-build-debug/
 CMakeLists.txt
 cmake-build-wsl_profile
-program/program
+program/main
 
 # Prerequisites
 *.d
