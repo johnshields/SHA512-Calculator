@@ -66,6 +66,7 @@ For example, when a user fills out a registration form for a website with a pass
 * Option 2
   * Install [gcc](https://preshing.com/20141108/how-to-install-the-latest-gcc-on-windows/) on your machine.
 
+
 * Option 3
   * If your PC is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
@@ -102,5 +103,14 @@ ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a8
 ```  
 
 Now that you have the program up and running change the text in `input.txt` and run main again to see what the program can digest it to!
+
+You can test it [here](https://emn178.github.io/online-tools/sha512.html) on an online SHA-512.
+
+Or by typing this command in to the terminal with the file you wish to hash.
+```bash
+$ sha512sum input.txt
+```
+
+For more information on this command refer to [sha512sum](https://command-not-found.com/sha512sum).
 ***
 ###### END OF README

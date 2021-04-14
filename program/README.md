@@ -29,8 +29,6 @@ const int _i = 1;
 #define is_little_endian() ((*(char*)&_i) != 0) // char = 8 bits
 ```
 
-
-
 # Logical Functions.
 ## ROT functions - [1] (Page 5)
 The rotate right (circular right shift) operation ROTR n (x),
@@ -263,7 +261,7 @@ int sha512(FILE *f, WORD H[]) {
 ```
 
 # Main
-Run the Algorithm
+Run the program
 
 ```c
 int main(int argc, char *argv[]) {

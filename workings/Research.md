@@ -76,8 +76,23 @@ The hash function then processes the padded message as n 512-bit or 1024-bit blo
 * Designed to make it difficult to reverse the process
 * Obvious Password security reasons
 * it should be impossible but if 1-3 characters as input could be done.
-* May not be able to be reverse but a Brute Force attempt could possibly find the orginal value
+* May not be able to be reverse but a Brute Force attempt could possibly find the original value
 * http://shattered.io/
+
+SHA-512 is designed to be difficult to reverse the process; otherwise, the algorithm would be pointless.
+The algorithm is often used for password encryption, thus why it is structured to be secure.
+The algorithm is a one-way function, meaning when a message gets passed through it, it is chopped and changed around using the logical functions ROTR, SHR, Maj, and Cha.
+'Big' and 'little' Simgas work with these functions to get the hash computation.
+With these functions in place, blocks of bytes and words are pre-processed, padded then hashed over.  
+The message gets almost lost in the process and is transformed into 128 Hexadecimal characters.
+
+NIST officially deprecated its predecessor SHA-1 in 2011. However, many companies still rely on it.
+GIT strongly depends on SHA-1 for the identification and integrity checking of all file objects and commits.
+It is essentially possible to create two repositories with the same head commit hash and different contents, say a benign source code and a backdoored one.
+An attacker could potentially selectively serve either repository to targeted users.
+This vulnerability will require attackers to compute their collision.
+
+SHA-512 was introduced to surmount these vulnerabilities. However, the original message must be complex. If the message was `abc` or anything being 1-3 characters long, it could be cracked with a brute force approach. Hence, most websites or apps ask for one uppercase and lowercase letters, a number, and a special character. e.g `@ $ * _ - /`. Having all these unique items in a password makes the hash even stronger.  
 
 ### Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
 
@@ -86,7 +101,7 @@ The hash function then processes the padded message as n 512-bit or 1024-bit blo
 * Simulated Annealing is an algorithm that applies
 * https://mathworld.wolfram.com/SimulatedAnnealing.html
 * Practically impossible even with a brute force approach
-* An NN could possible be trained to do this, but even then it would need a lot of time as hashes do not have patterns making it very for the train a NN of relevant data.
+* An NN could possible be trained to do this, but even then it would need a lot of time as hashes do not have patterns making it very difficult for the train a NN off relevant data.
 * NN vs Brute Force
 
 
