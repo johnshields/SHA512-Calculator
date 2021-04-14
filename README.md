@@ -36,7 +36,7 @@ For example, when a user fills out a registration form for a website with a pass
   - [main.c](https://github.com/johnshields/SHA512-Calculator/blob/main/program/main.c)
     - Source code of the main program for the SHA-512.
   - [input.txt](https://github.com/johnshields/SHA512-Calculator/blob/main/program/input.txt)
-    - Input file for command line argument when running program from a Makefile.
+    - Input file for command line argument when running program from an executable file.
 * [Workings](https://github.com/johnshields/SHA512-Calculator/tree/main/workings)
   - [images](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/images)
     - Images for documentation.
@@ -65,6 +65,9 @@ For example, when a user fills out a registration form for a website with a pass
 
 * Option 2
   * Install [gcc](https://preshing.com/20141108/how-to-install-the-latest-gcc-on-windows/) on your machine.
+
+* Option 3
+  * If your PC is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
 
 ## How to Run

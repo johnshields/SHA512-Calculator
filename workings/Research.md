@@ -55,9 +55,7 @@ Six logical functions are used in SHA-384, SHA-512, SHA-512/224, and SHA-512/256
 For SHA-384, SHA-512, SHA-512/224 and SHA-512/256, the message and its padding are
 parsed into N 1024-bit blocks.  Since the 1024 bits of the input block may be
 expressed as sixteen 64-bit words, the first 64 bits of message block i are denoted
-M0^i, the next 64 bits are M1^i, and so on up to M15^i.
-
-[[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 14)
+M0^i, the next 64 bits are M1^i, and so on up to M15^i. [[1]](https://www.nist.gov/publications/secure-hash-standard) (Page 14)
 
 The hash functions are used to generate a message digest from an input message or data file.
 A bit string should be used to describe the message or data file.
@@ -67,14 +65,10 @@ Message padding is used to render a padded message's total length a multiple of 
 
 A "1" is appended to the end of the message, followed by multiple "0s," followed by a 64-bit or 128-bit integer, resulting in a padded message of length 512*n or 1024*n.
 The criterion is met by using the smallest number of "0"s available. The appended integer represents the length of the original message.
-The hash function then processes the padded message as n 512-bit or 1024-bit blocks.
-
-[[5]](https://tools.ietf.org/pdf/rfc4634.pdf) (Page 6)
+The hash function then processes the padded message as n 512-bit or 1024-bit blocks. [[5]](https://tools.ietf.org/pdf/rfc4634.pdf) (Page 6)
 
 ### Endianness
-"The attribute of a system that indicates whether integers are represented with the most significant byte stored at the lowest address (big endian) or at the highest address (little endian)."
-
-[[11]](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
+"The attribute of a system that indicates whether integers are represented with the most significant byte stored at the lowest address (big endian) or at the highest address (little endian)." [[11]](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
 
 ## Main Questions
 ### Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?

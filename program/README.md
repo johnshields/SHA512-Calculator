@@ -1,81 +1,96 @@
-/*
- * John Shields - G00348436
- * SHA-512 Calculator
- * A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
- *
- * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
- * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
- * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
- * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
- * [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
- * [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
- */
+# SHA-512 Calculator
+##### John Shields - G00348436
 
+A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
+
+* [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
+* [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+* [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
+* [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
+* [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
+* [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+
+```c
 #include <stdio.h>
 #include <inttypes.h>
 #include <byteswap.h>
+```
 
+```c
 // Words and bytes.
 #define WORD uint64_t
 #define PF PRIx64
 #define BYTE uint8_t
+```
 
+```c
 // [4] Endianness
 const int _i = 1;
 #define is_little_endian() ((*(char*)&_i) != 0) // char = 8 bits
+```
 
-/*
- * Logical Functions.
- *
- * ROT functions - [1] (Page 5)
- * The rotate right (circular right shift) operation ROTR n (x),
- * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
-*/
+
+
+# Logical Functions.
+## ROT functions - [1] (Page 5)
+The rotate right (circular right shift) operation ROTR n (x),
+where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+```c
 #define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x) * 8) - _n)))
-/*
- * The right shift operation SHR n (x),
- * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
-*/
+```
+
+The right shift operation SHR n (x),
+where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
+```c
 #define SHR(_x, _n) (_x >> _n)
+```
 
-/*
- * Ch & Maj - [1] Page 11.
- * Bitwise Operators - [1] (Page 5) + [2]
- *
- * Ch stands for choose: The x input chooses if the output is from y or from z.
- * For each bit index, that result bit is according to the bit from y or z  at this index,
- * depending on if the bit from x is 1 or 0. [3]
- */
+# Ch & Maj - [1] Page 11.
+Bitwise Operators - [1] (Page 5) + [2]
+
+Ch stands for choose: The x input chooses if the output is from y or from z.
+For each bit index, that result bit is according to the bit from y or z  at this index,
+depending on if the bit from x is 1 or 0. [3]
+```c
 #define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
+```
 
-/*
- * Maj stands for majority: for each bit index, that result bit is according to the majority
- * of the three inputs bits for x, y and z at this index. [3]
- */
+Maj stands for majority: for each bit index, that result bit is according to the majority
+of the three inputs bits for x y and z at this index. [3]
+```c
 #define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
+```
 
-// SIGMA functions - [1] (Page 11)
+# SIGMA functions - [1] (Page 11)
+```c
 #define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
 #define SIG1(_x) (ROTR(_x, 14) ^ ROTR(_x, 18) ^ ROTR(_x, 41))
 #define Sig0(_x) (ROTR(_x, 1) ^ ROTR(_x, 8) ^ SHR(_x, 7))
 #define Sig1(_x) (ROTR(_x, 19) ^ ROTR(_x, 61) ^ SHR(_x, 6))
+```
 
-// SHA-512 works on blocks of 1024 bits.
+# Block
+SHA-512 works on blocks of 1024 bits.
+```c
 union Block {
     BYTE bytes[128];
     WORD words[16];
     uint64_t sixF[16];
 };
+```
 
-// For keeping track of where the input message/padding is.
+# Status
+For keeping track of where the input message/padding is.
+```c
 enum Status {
     READ, PAD, END
 };
+```
 
-/*
- * This const represents the first 64 bits of the fractional parts of the cube roots of the
- * first eighty prime numbers. In hex, these constant words are from left to right. [1] (Page 12)
- */
+# WORD K
+This const represents the first 64 bits of the fractional parts of the cube roots of the
+first eighty prime numbers. In hex, these constant words are from left to right. [1] (Page 12)
+ ```c
 const WORD K[] = {
         0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
         0x3956c25bf348b538, 0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118,
@@ -98,12 +113,14 @@ const WORD K[] = {
         0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c,
         0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
+```
 
-/*
- * Get Next Block. [5] & [6]
- * Returns 1 if it created a new block from original message or padding.
- * Returns 0 if all padded message has already been consumed.
-*/
+
+# Get Next Block. [5] & [6]
+Returns 1 if it created a new block from original message or padding.
+Returns 0 if all padded message has already been consumed.
+
+```c
 int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
     // number of bytes read.
     size_t num_of_bytes;
@@ -163,10 +180,12 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
     }
     return 1;
 }
+```
 
-// Get the Next Hash
-// SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
-// designed to make it difficult to reverse the process - [5].
+# Get the Next Hash
+SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
+designed to make it difficult to reverse the process - [5].
+```c
 int next_hash(union Block *M, WORD H[]) {
     // Message schedule, [1] Section 6.4.2
     WORD W[128];
@@ -220,8 +239,11 @@ int next_hash(union Block *M, WORD H[]) {
 
     return 0;
 }
+```
 
-// The function that performs/orchestrates the SHA-512 algorithm on message f.
+# SHA-512
+ The function that performs/orchestrates the SHA-512 algorithm on message f.
+ ```c
 int sha512(FILE *f, WORD H[]) {
     // The current block.
     union Block M;
@@ -238,7 +260,12 @@ int sha512(FILE *f, WORD H[]) {
     }
     return 0;
 }
+```
 
+# Main
+Run the Algorithm
+
+```c
 int main(int argc, char *argv[]) {
     /*
      * Preprocessing
@@ -284,3 +311,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+```
