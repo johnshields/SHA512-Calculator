@@ -113,4 +113,32 @@ $ sha512sum input.txt
 
 For more information on this command refer to [sha512sum](https://command-not-found.com/sha512sum).
 ***
+
+
+## Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?
+SHA-512 is designed to be difficult to reverse the process; otherwise, the algorithm would be pointless.
+The algorithm is often used for password hashing, thus why it is structured to be secure.
+The algorithm is a one-way function, meaning when a message gets passed through it, it is chopped and changed around using the logical functions ROTR, SHR, Maj, and Cha.
+'Big' and 'little' Simgas work with these functions to get the hash computation.
+With these functions in place, blocks of bytes and words are pre-processed, padded then hashed over. The message gets almost lost in the process and is transformed into 128 Hexadecimal characters.
+
+NIST officially deprecated SHA-512's predecessor SHA-1 in 2011. However, many companies still rely on it.
+GIT strongly depends on SHA-1 for the identification and integrity checking of all file objects and commits.
+It is essentially possible to create two repositories with the same head commit hash and different contents, say a benign source code and a backdoored one.
+An attacker could potentially selectively serve either repository to targeted users.
+This vulnerability will require attackers to compute their collision. [[12]](http://shattered.io/)
+
+SHA-512 was introduced to surmount these vulnerabilities. However, the original message must be complex. If the message was `abc` or anything being 1-3 characters long, it could be cracked with a brute force approach. Hence, most websites or apps ask for one uppercase and lowercase letters, a number, and a special character. e.g `@ $ * _ - /`. Having all these unique items in a password makes the hash even stronger.
+
+For example, the SHA-512 hash value for the character `@` is:
+
+```
+e97b9cc0c1e22c66bff31f6c457c2b95b9f9af955c8a098e043734df7439031fd1c6748a139d99077eb2db5f3d98a0e9d05b6606e3d4010ec107a52cd7e43359
+```
+
+As you can see, it is quite complex, and a combination of unique characters makes the hash even more complicated. Just reversing the algorithm just for one character would be difficult and require a 'Brute Force' approach to crack one character. If the message is complex with many special characters, e.g., `@P&a$ss@w^/o|-r#_~d€¬56*`. It would be like going up against a supercomputer such as the Fugaku with a Nokia 3310.
+
+Hashing often gets confused with encryption. Encryption can be reversed as the original message is still in there. As with encryption, it is turned into 'gibberish.' Whereas with hashing, the original message is lost. If the SHA-512 were potentially reversible, its source code would not be available worldwide as the source code could outline a possible way to reverse it. Since it is not, it is allowed to be boasted about and thought highly of.
+
+From the statements above, it is pretty apparent why the SHA-512 is irreversible.
 ###### END OF README
