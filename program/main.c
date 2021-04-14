@@ -9,11 +9,14 @@
  * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
  * [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
  * [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+ * [7] https://stackoverflow.com/questions/20076001/how-do-i-create-a-help-option-in-a-command-line-program-in-c-c
  */
 
 #include <stdio.h>
 #include <inttypes.h>
 #include <byteswap.h>
+// for --help in CLI
+#include <string.h>
 
 // Words and bytes.
 #define WORD uint64_t
@@ -149,13 +152,13 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
         for (num_of_bytes = 0; num_of_bytes < 112; num_of_bytes++) {
             M->bytes[num_of_bytes] = 0x00; // In bits: 00000000
         }
-        // Append num_of_bits as an integer - Check endian
+        // Append num_of_bits as an integer - Check endian.
         M->sixF[15] = (is_little_endian() ? bswap_64(*num_of_bits) : *num_of_bits);
         // Change the status to END.
         *S = END;
     }
 
-    // swap the byte order of the words if is_little_endian
+    // Swap the byte order of the words if is_little_endian.
     if (is_little_endian()) {
         for (int i = 0; i < 16; i++) {
             M->words[i] = bswap_64(M->words[i]);
@@ -192,7 +195,7 @@ int next_hash(union Block *M, WORD H[]) {
     g = H[6];
     h = H[7];
 
-    // [1] Section 6.4.2, part 3.
+    // Bring in the Logical Functions SIG1, Ch, SIG0 and Maj [1] Section 6.4.2, part 3.
     for (t = 0; t < 80; t++) {
         T1 = h + SIG1(e) + CH(e, f, g) + K[t] + W[t];
         T2 = SIG0(a) + MAJ(a, b, c);
@@ -207,8 +210,8 @@ int next_hash(union Block *M, WORD H[]) {
     }
 
     // [1] Section 6.4.2, part 4.
-    // Compute the ith intermediate hash value H(i)
-    // next hash from current message block and previous hash value
+    // Compute the ith intermediate hash value H(i).
+    // next hash from current message block and previous hash value.
     H[0] = a + H[0];
     H[1] = b + H[1];
     H[2] = c + H[2];
@@ -259,7 +262,15 @@ int main(int argc, char *argv[]) {
     // File pointer for reading.
     FILE *f;
 
-    // Error checking to show if no file was specified in the cli argument.
+    // --help in command line - [7].
+    if (argc == 2 && strcmp(argv[1], "--help")==0) {
+        printf("SHA-512 Calculator --help \n");
+        printf("\nHash a file with the program by specifying a file e.g: \n");
+        printf("\n./main input.txt \n");
+        return 0;
+    }
+
+    // Error checking to show if no file was specified in the command line argument.
     if (argc != 2) {
         printf("Expected filename in argument \n");
         return 1;

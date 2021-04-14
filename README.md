@@ -171,7 +171,7 @@ for (t = 0; t < 80; t++) {
 #### After repeating steps one through four a total of N times (i.e., after processing M(N)), the resulting 512-bit message digest of the message, M, is:
 
 ```c
-H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)||
+H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)
 ```
  [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2
 
