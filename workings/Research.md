@@ -77,13 +77,20 @@ The hash function then processes the padded message as n 512-bit or 1024-bit blo
 [[11]](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
 
 ## Main Questions
-### Why can't we reverse the SHA512 algorithm to retrieve the original message from a hash digest?
+### Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?
 * It is a one-way function
+* Designed to make it difficult to reverse the process
 * Obvious Password security reasons
+* it should be impossible but if 1-3 characters as input could be done.
+* May not be able to be reverse but a Brute Force attempt could possibly find the orginal value
+* http://shattered.io/
 
 ### Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
 
 ### How difficult is it to find a hash digest beginning with at least twelve zeros?
+
+* Bitcoin - SHA-256
+* http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html
 
 ***
 ###### END OF RESEARCH

@@ -27,7 +27,7 @@ A program in the C programming language to calculate the SHA-512 value of an inp
 All weekly Labs for the module are located in [this repository](https://github.com/johnshields/SHA-256).
 
 # About the SHA-512
-SHA-512 (Secure Hash Algorithm) is used to digest any value given and hash (encrypt) it into 128 Hexadecimal characters. There are a lot of parts to SHA-512. The main ones being, Words, Bits, Bytes, Logical Functions, Message Blocks, Message Padding and Endianness.
+SHA-512 (Secure Hash Algorithm) is part of the SHA-2 set of cryptographic hash functions, designed by the U.S. National Security Agency (NSA) and published in 2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). [[2]](https://md5hashing.net/hash/sha512) SHA-512 is used to digest any value given and hash (encrypt) it into 128 Hexadecimal characters. There are a lot of parts to SHA-512. The main ones being, Words, Bits, Bytes, Logical Functions, Message Blocks, Message Padding and Endianness.
 
 For example, when a user fills out a registration form for a website with a password, this website could be using the SHA-512 to hash the password for security. For the example, let's say the website is using the SHA-512. When the user enters their details and clicks `Register`. Their password gets sent through a SHA-512 program to hash it and save the password's hashed value into the website's database. When the user logs in, the entered password gets sent through the same program and compares to the one in the database. If the hashes match, the user has entered their password correctly.
 
@@ -78,7 +78,7 @@ $ cd program
 ```
 
 * Step 2:
- * Make main.c into a Makefile.
+ * Make main.c into an executable file.
 ```bash
 $ make main
 ```
