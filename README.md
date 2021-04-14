@@ -73,7 +73,7 @@ For example, when a user fills out a registration form for a website with a pass
 ## How to Run
 
 * Step 1:
-  * In your chosen Terminal or Command Line if you have ``gcc`` installed. <br>
+  * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
     Open a directory of your choice and enter:
 ```bash
 $ git clone https://github.com/johnshields/SHA512-Calculator.git

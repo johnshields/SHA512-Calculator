@@ -63,7 +63,7 @@ The length of a message is the number of bits (the empty message has a length of
 A message in hex for compactness may represent if the number of bits in it is a multiple of 8.
 Message padding is used to render a padded message's total length a multiple of 512 for SHA-224 and SHA-256, or a multiple of 1024 for SHA-384 and SHA-512.
 
-A "1" is appended to the end of the message, followed by multiple "0s," followed by a 64-bit or 128-bit integer, resulting in a padded message of length 512*n or 1024*n.
+A "1" is appended to the end of the message, followed by multiple "0s," followed by a 64-bit or 128-bit integer, resulting in a padded message of length 512^n or 1024^n.
 The criterion is met by using the smallest number of "0"s available. The appended integer represents the length of the original message.
 The hash function then processes the padded message as n 512-bit or 1024-bit blocks. [[5]](https://tools.ietf.org/pdf/rfc4634.pdf) (Page 6)
 
@@ -80,6 +80,15 @@ The hash function then processes the padded message as n 512-bit or 1024-bit blo
 * http://shattered.io/
 
 ### Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
+
+* AI
+* https://security.stackexchange.com/questions/135211/can-a-neural-network-crack-hashing-algorithms
+* Simulated Annealing is an algorithm that applies
+* https://mathworld.wolfram.com/SimulatedAnnealing.html
+* Practically impossible even with a brute force approach
+* An NN could possible be trained to do this, but even then it would need a lot of time as hashes do not have patterns making it very for the train a NN of relevant data.
+* NN vs Brute Force
+
 
 ### How difficult is it to find a hash digest beginning with at least twelve zeros?
 
