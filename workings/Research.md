@@ -103,6 +103,48 @@ As you can see, it is quite complex, and a combination of unique characters make
 
 Hashing often gets confused with encryption. Encryption can be reversed as the original message is still in there. As with encryption, it is turned into 'gibberish.' Whereas with hashing, the original message is lost. If the SHA-512 were potentially reversible, its source code would not be available worldwide as the source code could outline a possible way to reverse it. Since it is not, it is allowed to be boasted about and thought highly of.
 
+The SHA-512 hash computation is the part that makes it irreversible. The C code below shows how the computation comes in.
+
+#### In the computation each message block, M(1), M(2), …, M(N), is processed in order, using the following steps: [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.1 (Page 24)
+
+#### Prepare the message schedule - [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 1.
+```c
+for (t = 0; t < 16; t++)
+    W[t] = M->words[t];
+for (t = 16; t < 80; t++)
+    W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
+```
+
+#### Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value. [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 2.
+
+```c
+a = H[0]; b = H[1]; c = H[2]; d = H[3]; e = H[4]; f = H[5]; g = H[6]; h = H[7];
+```
+
+#### Bring in the Logical Functions SIG1, Ch, SIG0 and Maj [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 3.
+
+```c
+for (t = 0; t < 80; t++) {
+   T1 = h + SIG1(e) + CH(e, f, g) + K[t] + W[t];
+   T2 = SIG0(a) + MAJ(a, b, c);
+
+   h = g; g = f; f = e; e = d + T1;
+   d = c; c = b; b = a; a = T1 + T2;
+}
+```
+
+#### Compute the ith intermediate hash value H(i) next hash from current message block and previous hash value. [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 4.
+```c
+  H[0] = a + H[0];
+  H[1] = b + H[1];
+  H[2] = c + H[2];
+  H[3] = d + H[3];
+  H[4] = e + H[4];
+  H[5] = f + H[5];
+  H[6] = g + H[6];
+  H[7] = h + H[7];
+```
+
 From the statements above, it is pretty apparent why the SHA-512 is irreversible.
 
 ### Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?

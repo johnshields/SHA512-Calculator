@@ -20,7 +20,6 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 # SHA-512 Calculator
-A repository for the main project for the module Theory of Algorithms.<br>
 A program in the C programming language to calculate the SHA-512 value of an input file.
 
 
@@ -37,13 +36,13 @@ For example, when a user fills out a registration form for a website with a pass
     - Source code of the main program for the SHA-512.
   - [input.txt](https://github.com/johnshields/SHA512-Calculator/blob/main/program/input.txt)
     - Input file for command line argument when running program from an executable file.
+  - [README.md](https://github.com/johnshields/SHA512-Calculator/tree/main/program/README.md)
+    - An overview of how the program works.
 * [Workings](https://github.com/johnshields/SHA512-Calculator/tree/main/workings)
   - [images](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/images)
     - Images for documentation.
-  - [resources](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/resources)
-    - Resources that aided the development of the program.
   - [References.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md)
-    - URLs for citing
+    - Resources & References that aided the development and research of the program.
   - [Research-and-Development-Diary.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research-and-Development-Diary.md)
     - A Diary of how the program came altogether from week-by-week work.
   - [Research.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md)
@@ -68,8 +67,7 @@ For example, when a user fills out a registration form for a website with a pass
 
 
 * Option 3
-  * If your PC is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
-
+  * If your machine is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
 ## How to Run
 
@@ -114,7 +112,7 @@ $ sha512sum input.txt
 For more information on this command refer to [sha512sum](https://command-not-found.com/sha512sum).
 ***
 
-
+# Questions & Answers
 ## Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?
 SHA-512 is designed to be difficult to reverse the process; otherwise, the algorithm would be pointless.
 The algorithm is often used for password hashing, thus why it is structured to be secure.
@@ -140,5 +138,47 @@ As you can see, it is quite complex, and a combination of unique characters make
 
 Hashing often gets confused with encryption. Encryption can be reversed as the original message is still in there. As with encryption, it is turned into 'gibberish.' Whereas with hashing, the original message is lost. If the SHA-512 were potentially reversible, its source code would not be available worldwide as the source code could outline a possible way to reverse it. Since it is not, it is allowed to be boasted about and thought highly of.
 
-From the statements above, it is pretty apparent why the SHA-512 is irreversible.
+The SHA-512 hash computation is the part that makes it irreversible. This is done after the message is padded. The C code below shows how the computation comes in.
+
+#### In the computation each message block, M(1), M(2), …, M(N), is processed in order, using the following steps: [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.1 (Page 24)
+
+#### Prepare the message schedule - [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 1.
+```c
+for (t = 0; t < 16; t++)
+    W[t] = M->words[t];
+for (t = 16; t < 80; t++)
+    W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
+```
+
+#### Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value. [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 2.
+
+```c
+a = H[0]; b = H[1]; c = H[2]; d = H[3]; e = H[4]; f = H[5]; g = H[6]; h = H[7];
+```
+
+#### Bring in the Logical Functions SIG1, Ch, SIG0 and Maj [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 3.
+
+```c
+for (t = 0; t < 80; t++) {
+   T1 = h + SIG1(e) + CH(e, f, g) + K[t] + W[t];
+   T2 = SIG0(a) + MAJ(a, b, c);
+
+   h = g; g = f; f = e; e = d + T1;
+   d = c; c = b; b = a; a = T1 + T2;
+}
+```
+
+#### After repeating steps one through four a total of N times (i.e., after processing M(N)), the resulting 512-bit message digest of the message, M, is:
+
+```c
+H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)||
+```
+ [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2
+
+From the statements and demonstration above, it is pretty apparent why the SHA-512 is irreversible.
+
+## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
+
+## How difficult is it to find a hash digest beginning with at least twelve zeros?
+
 ###### END OF README
