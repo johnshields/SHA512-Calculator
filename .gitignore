@@ -1,7 +1,7 @@
 # SHA512-Calculator
 .idea
 cmake-build-debug/
-CMakeLists.txt
+program/CMakeLists.txt
 cmake-build-wsl_profile
 program/sha512calculator
 program/main

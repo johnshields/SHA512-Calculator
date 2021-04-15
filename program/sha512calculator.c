@@ -265,7 +265,7 @@ int main(int argc, char *argv[]) {
     // --help in command line - [7].
     if (argc == 2 && strcmp(argv[1], "--help")==0) {
         printf("SHA-512 Calculator --help \n");
-        printf("\nHash a file with the program by specifying a file e.g: './main input.txt' \n");
+        printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
     }
@@ -273,14 +273,14 @@ int main(int argc, char *argv[]) {
     // Error checking to show if no file was specified in the command line argument.
     if (argc != 2) {
         printf("Expected filename in argument. \n");
-        printf("\nType './main --help' for more info. \n");
+        printf("\nType './sha512calculator --help' for more info. \n");
         return 1;
     }
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
         printf("Not able to read file %s \n", argv[1]);
-        printf("\nType './main --help' for more info. \n");
+        printf("\nType './sha512calculator --help' for more info. \n");
         return 1;
     }
 

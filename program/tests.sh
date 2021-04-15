@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Set up files for testing.
 files="test_inputs/*"
 
+# Test the program with all the files against sha512sum.
 for f in $files
 do
 printf "\nChecking file $f\n"

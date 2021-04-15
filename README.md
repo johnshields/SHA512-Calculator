@@ -70,7 +70,7 @@ For example, when a user fills out a registration form for a website with a pass
 * Option 3
   * If your machine is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
-## How to Run by making an `executable file`
+## How to Run 
 
 * Step 1:
   * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
@@ -81,37 +81,11 @@ $ cd program
 ```
 
 * Step 2:
-  * Make main.c into an executable file.
+  * Make sha512calculator.c into an executable file.
 ```bash
-$ make main
+$ make sha512calculator
 ```
-
-* Step 3:
-  * Run main with a command line argument of any file.
-```bash
-$ ./main /test_inputs/seasalt.txt
-```
-
-``seasalt.txt`` contains the noun 'sea salt'.
-
-When the program is ran with this file the hash value should look like this:
-
-```bash
-$ ./main /test_inputs/seasalt.txt
-fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf
-```
-
-## How to Run by using the `Makefile`
-* Step 1:
-  * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
-    Open a directory of your choice and enter:
-```bash
-$ git clone https://github.com/johnshields/SHA512-Calculator.git
-$ cd program
-```
-
-* Step 2:
-  * Call the Makefile to make an executable by entering:
+  * Or use the `Makefile` you can also make it into an executable file by entering:
 ```bash
 $ make
 ```
@@ -119,8 +93,10 @@ $ make
 * Step 3:
   * Run sha512calculator with a command line argument of any file.
 ```bash
-$  ./sha512calculator /test_inputs/seasalt.txt
+$ ./sha512calculator /test_inputs/seasalt.txt
 ```
+
+``seasalt.txt`` contains the noun 'sea salt'.
 
 When the program is ran with this file the hash value should look like this:
 
@@ -138,6 +114,11 @@ With the Makefile you can do tests.
 $ make
 ```
 * Step 2
+  * You will need to make `tests.sh` runnable. 
+```bash
+$ chmod u+x tests.sh
+```
+* Step 3
   * Call in the `make test`
   
 ```bash

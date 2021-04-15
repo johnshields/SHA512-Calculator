@@ -123,5 +123,9 @@ if (is_little_endian()) {
 The SHA-512 program is officially complete.
 ![image](https://user-images.githubusercontent.com/26766163/114074001-d1137c00-989b-11eb-9cb8-7be7bcc3634f.png)
 
+## Week Eleven
+This week I added a '--help' to the program which says what to do when a command is wrong. 
+Also in the labs this week Makefiles and make tests were covered so I added those to the program too. 
+
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY
