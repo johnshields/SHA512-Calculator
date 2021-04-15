@@ -183,30 +183,34 @@ Perhaps artificial intelligence could add this process.
 The Heuristic Simulated Annealing algorithm is used to crack ciphers. 
 A common practice with heuristics is breaking a cipher by generating many keys, decrypt a cipher-text with each key, and then examine the resultant plaintext. 
 This technique is very effective for breaking classical ciphers and has been shown to work well for Affine, Autokey, Bifid, Playfair, and Four-Square ciphers. 
-[[13]](https://en.wikipedia.org/wiki/One-time_pad) & [[14]](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/)
-
-However, these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
+[[13]](https://en.wikipedia.org/wiki/One-time_pad) & [[14]](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/) However, 
+these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
 As said above, the message gets lost in a hash, so decipher algorithm would not work for this situation.
 
 Machine Learning is another possibility to use against hashes. 
-A Neural Network (NN) could be trained with the original message and an expected hash value. 
+A Neural Network (NN) could be trained with hash values and expected original messages. 
 This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings.
 This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc.
 A data set of such would take some time to put together.
 Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time.
 An NN could crack smaller hash algorithms such as the SHA-1, SHA-2, SHA-3, and MD5. 
-For SHA-1, a "NN can invert 1 round with positive probability; for two rounds, there are at least ten misses, then the number of misses becomes more significant than the number of matched bits. 
+For SHA-1, a 
+"NN can invert 1 round with positive probability; for two rounds, there are at least ten misses, 
+then the number of misses becomes more significant than the number of matched bits. 
 The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible; 
-the quick-convergence-to- 1 2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
-Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf)
-Keep in mind that this hash 'translation' is for SHA-1. 
+the quick-convergence-to 1-2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
+Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf) (Page 8)
+Keep in mind that this hash 'translation' is for SHA-1. Having a NN tackle an algorithm such as the SHA-256 or SHA-512 would not be very achievable. 
 Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings.
-It might be able to get part of it but not the whole message.
+It might be able to get part of it but not whole. 
 
-In summary, I do not think is it possible to design an algorithm, or a NN that can do this process. 
-
+Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
+The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash. [[16]](https://bitcoin.org/bitcoin.pdf) (Page 3, Section 4)
+This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve.
 
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
+
+
 
 ###### END OF README

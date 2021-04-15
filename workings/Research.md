@@ -160,7 +160,8 @@ Perhaps artificial intelligence could add this process.
 The Heuristic Simulated Annealing algorithm is used to crack ciphers. 
 A common practice with heuristics is breaking a cipher by generating many keys, decrypt a cipher-text with each key, and then examine the resultant plaintext. 
 This technique is very effective for breaking classical ciphers and has been shown to work well for Affine, Autokey, Bifid, Playfair, and Four-Square ciphers. 
-https://en.wikipedia.org/wiki/One-time_pad) 
+
+https://en.wikipedia.org/wiki/One-time_pad
 https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/
 
 However, these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
@@ -177,9 +178,15 @@ For SHA-1, a "NN can invert 1 round with positive probability; for two rounds, t
 The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible; 
 the quick-convergence-to- 1 2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
 Partial matching of a small group of hash bits is possible." 
+
 https://arxiv.org/pdf/1901.02438.pdf
 
-Keep in mind that this hash 'translation' is for SHA-1. Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings.
+Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
+The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash.
+This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve. 
+
+https://bitcoin.org/bitcoin.pdf
+
 
 ### How difficult is it to find a hash digest beginning with at least twelve zeros?
 
