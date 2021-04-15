@@ -288,10 +288,9 @@ int main(int argc, char *argv[]) {
     sha512(f, H);
 
     // Print the final SHA-512 hash.
-    printf("SHA-512 hash value of %s \n\n", argv[1]);
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
-    printf("\n");
+    printf("  %s\n", argv[1]);
 
     // Close the file.
     fclose(f);

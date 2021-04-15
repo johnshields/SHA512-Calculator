@@ -130,7 +130,7 @@ fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2b
 ```
 
 ## Testing
-Will the Makefile you can do tests
+With the Makefile you can do tests.
 
 * Step 1
   * Call the Makefile to make an executable by entering:
