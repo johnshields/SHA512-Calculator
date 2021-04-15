@@ -34,12 +34,12 @@ const int _i = 1;
  * The rotate right (circular right shift) operation ROTR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define ROTR(_x, _n) ((_x >> _n) | (_x << ((sizeof(_x) * 8) - _n)))
+#define ROTR(_x, _n) (((_x) >> (_n)) | ((_x) << ((sizeof(_x) * 8) - (_n))))
 /*
  * The right shift operation SHR n (x),
  * where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 */
-#define SHR(_x, _n) (_x >> _n)
+#define SHR(_x, _n) ((_x) >> (_n))
 
 /*
  * Ch & Maj - [1] Page 11.
@@ -49,13 +49,13 @@ const int _i = 1;
  * For each bit index, that result bit is according to the bit from y or z  at this index,
  * depending on if the bit from x is 1 or 0. [3]
  */
-#define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
+#define CH(_x, _y, _z) (((_x) & (_y)) ^ (~(_x) & (_z)))
 
 /*
  * Maj stands for majority: for each bit index, that result bit is according to the majority
  * of the three inputs bits for x, y and z at this index. [3]
  */
-#define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
+#define MAJ(_x, _y, _z) (((_x) & (_y)) ^ ((_x) & (_z)) ^ ((_y) & (_z)))
 
 // SIGMA functions - [1] (Page 11)
 #define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
@@ -265,20 +265,22 @@ int main(int argc, char *argv[]) {
     // --help in command line - [7].
     if (argc == 2 && strcmp(argv[1], "--help")==0) {
         printf("SHA-512 Calculator --help \n");
-        printf("\nHash a file with the program by specifying a file e.g: \n");
-        printf("\n./main input.txt \n");
+        printf("\nHash a file with the program by specifying a file e.g: './main input.txt' \n");
+        printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
     }
 
     // Error checking to show if no file was specified in the command line argument.
     if (argc != 2) {
-        printf("Expected filename in argument \n");
+        printf("Expected filename in argument. \n");
+        printf("\nType './main --help' for more info. \n");
         return 1;
     }
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        printf("Not able to read file %s. \n", argv[1]);
+        printf("Not able to read file %s \n", argv[1]);
+        printf("\nType './main --help' for more info. \n");
         return 1;
     }
 
@@ -286,6 +288,7 @@ int main(int argc, char *argv[]) {
     sha512(f, H);
 
     // Print the final SHA-512 hash.
+    printf("SHA-512 hash value of %s \n\n", argv[1]);
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
     printf("\n");

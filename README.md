@@ -91,13 +91,13 @@ $ make main
 $ ./main input.txt
 ```
 
-``input.txt`` contains the letters a, b and c.
+``input.txt`` contains the noun 'sea salt'.
 
-When main is ran with this file the hash digest should look like this:
+When main is ran with this file the hash value should look like this:
 
 ```bash
 $ ./main input.txt
-ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f
+fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf
 ```  
 
 Now that you have the program up and running change the text in `input.txt` and run main again to see what the program can digest it to!
