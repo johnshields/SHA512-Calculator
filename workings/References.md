@@ -11,3 +11,6 @@
 10. [*C Bitwise Operators: AND, OR, XOR, Shift & Complement*](https://www.guru99.com/c-bitwise-operators.html)
 11. [*Writing endian-independent code in C*, IBM Developer](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
 12. [*We have broken SHA-1 in practice.* SHAttered](http://shattered.io/)
+13. [*One-time_pad*](https://en.wikipedia.org/wiki/One-time_pad)    
+14. [*decoding-a-substitution-cipher-using-simulated-annealing*](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/)
+15. [*Using fuzzy bits and neural networks to partially invert few rounds of some cryptographic hash functions* Sergij V. Goncharov](https://arxiv.org/pdf/1901.02438.pdf)

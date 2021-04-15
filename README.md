@@ -26,14 +26,14 @@ A program in the C programming language to calculate the SHA-512 value of an inp
 All weekly Labs for the module are located in [this repository](https://github.com/johnshields/SHA-256).
 
 # About the SHA-512
-SHA-512 (Secure Hash Algorithm) is part of the SHA-2 set of cryptographic hash functions, designed by the U.S. National Security Agency (NSA) and published in 2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). [[2]](https://md5hashing.net/hash/sha512) SHA-512 is used to digest any value given and hash (encrypt) it into 128 Hexadecimal characters. There are a lot of parts to SHA-512. The main ones being, Words, Bits, Bytes, Logical Functions, Message Blocks, Message Padding and Endianness.
+SHA-512 (Secure Hash Algorithm) is part of the SHA-2 set of cryptographic hash functions, designed by the U.S. National Security Agency (NSA) and published in 2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). [[2]](https://md5hashing.net/hash/sha512) SHA-512 is used to digest any value given and hash it into 128 Hexadecimal characters. There are a lot of parts to SHA-512. The main ones being, Words, Bits, Bytes, Logical Functions, Message Blocks, Message Padding and Endianness.
 
 For example, when a user fills out a registration form for a website with a password, this website could be using the SHA-512 to hash the password for security. For the example, let's say the website is using the SHA-512. When the user enters their details and clicks `Register`. Their password gets sent through a SHA-512 program to hash it and save the password's hashed value into the website's database. When the user logs in, the entered password gets sent through the same program and compares to the one in the database. If the hashes match, the user has entered their password correctly.
 
 ## Repository Contents
 * [Program](https://github.com/johnshields/SHA512-Calculator/tree/main/program)
   - [main.c](https://github.com/johnshields/SHA512-Calculator/blob/main/program/main.c)
-    - Source code of the main program for the SHA-512.
+    - Source code of the program for the SHA-512.
   - [input.txt](https://github.com/johnshields/SHA512-Calculator/blob/main/program/input.txt)
     - Input file for command line argument when running program from an executable file.
   - [README.md](https://github.com/johnshields/SHA512-Calculator/tree/main/program/README.md)
@@ -50,7 +50,7 @@ For example, when a user fills out a registration form for a website with a pass
 * [.gitignore](https://github.com/johnshields/SHA512-Calculator/blob/main/.gitignore)
   - Files/Directories to ignore when committing to the Repository.
 * [README.md](https://github.com/johnshields/SHA512-Calculator/blob/main/README.md)
-  - Documentation of the programs Details.
+  - Documentation of the program's Details.
 
 # Run the Program
 ### Requirements
@@ -117,12 +117,12 @@ For more information on this command refer to [sha512sum](https://command-not-fo
 SHA-512 is designed to be difficult to reverse the process; otherwise, the algorithm would be pointless.
 The algorithm is often used for password hashing, thus why it is structured to be secure.
 The algorithm is a one-way function, meaning when a message gets passed through it, it is chopped and changed around using the logical functions ROTR, SHR, Maj, and Cha.
-'Big' and 'little' Simgas work with these functions to get the hash computation.
+'Big' and 'little' Sigmas work with these functions to get the hash computation.
 With these functions in place, blocks of bytes and words are pre-processed, padded then hashed over. The message gets almost lost in the process and is transformed into 128 Hexadecimal characters.
 
 NIST officially deprecated SHA-512's predecessor SHA-1 in 2011. However, many companies still rely on it.
 GIT strongly depends on SHA-1 for the identification and integrity checking of all file objects and commits.
-It is essentially possible to create two repositories with the same head commit hash and different contents, say a benign source code and a backdoored one.
+It is essentially possible to create two repositories with the same head commit hash and different contents, say a benign source code and a back-doored one.
 An attacker could potentially selectively serve either repository to targeted users.
 This vulnerability will require attackers to compute their collision. [[12]](http://shattered.io/)
 
@@ -178,6 +178,34 @@ H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)
 From the statements and demonstration above, it is pretty apparent why the SHA-512 is irreversible.
 
 ## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
+An algorithm of such would require a lot of time and a lot of trial and error. 
+Perhaps artificial intelligence could add this process. 
+The Heuristic Simulated Annealing algorithm is used to crack ciphers. 
+A common practice with heuristics is breaking a cipher by generating many keys, decrypt a cipher-text with each key, and then examine the resultant plaintext. 
+This technique is very effective for breaking classical ciphers and has been shown to work well for Affine, Autokey, Bifid, Playfair, and Four-Square ciphers. 
+[[13]](https://en.wikipedia.org/wiki/One-time_pad) & [[14]](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/)
+
+However, these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
+As said above, the message gets lost in a hash, so decipher algorithm would not work for this situation.
+
+Machine Learning is another possibility to use against hashes. 
+A Neural Network (NN) could be trained with the original message and an expected hash value. 
+This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings.
+This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc.
+A data set of such would take some time to put together.
+Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time.
+An NN could crack smaller hash algorithms such as the SHA-1, SHA-2, SHA-3, and MD5. 
+For SHA-1, a "NN can invert 1 round with positive probability; for two rounds, there are at least ten misses, then the number of misses becomes more significant than the number of matched bits. 
+The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible; 
+the quick-convergence-to- 1 2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
+Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf)
+Keep in mind that this hash 'translation' is for SHA-1. 
+Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings.
+It might be able to get part of it but not the whole message.
+
+In summary, I do not think is it possible to design an algorithm, or a NN that can do this process. 
+
+
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
 
