@@ -1,4 +1,5 @@
-# SHA-512 Calculator
+# An overview of the program
+## SHA-512 Calculator
 ##### John Shields - G00348436
 
 A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
@@ -9,22 +10,26 @@ A program in the C programming language to calculate the SHA512 (Secure Hash Sta
 * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
 * [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
 * [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+* [7] https://stackoverflow.com/questions/20076001/how-do-i-create-a-help-option-in-a-command-line-program-in-c-c
 
+## Necessary libraries.
 ```c
 #include <stdio.h>
 #include <inttypes.h>
 #include <byteswap.h>
+// for --help in CLI
+#include <string.h>
 ```
 
+## Words and bytes.
 ```c
-// Words and bytes.
 #define WORD uint64_t
 #define PF PRIx64
 #define BYTE uint8_t
 ```
 
+## Endianness [4]
 ```c
-// [4] Endianness
 const int _i = 1;
 #define is_little_endian() ((*(char*)&_i) != 0) // char = 8 bits
 ```
@@ -43,7 +48,7 @@ where x is a w-bit word and n is an integer with 0 < n < w. [1] (Page 8)
 #define SHR(_x, _n) (_x >> _n)
 ```
 
-# Ch & Maj - [1] Page 11.
+## Ch & Maj - [1] Page 11.
 Bitwise Operators - [1] (Page 5) + [2]
 
 Ch stands for choose: The x input chooses if the output is from y or from z.
@@ -53,13 +58,17 @@ depending on if the bit from x is 1 or 0. [3]
 #define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
 ```
 
+![ch](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
+
 Maj stands for majority: for each bit index, that result bit is according to the majority
 of the three inputs bits for x y and z at this index. [3]
 ```c
 #define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
 ```
 
-# SIGMA functions - [1] (Page 11)
+![maj](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
+
+## SIGMA functions - [1] (Page 11)
 ```c
 #define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
 #define SIG1(_x) (ROTR(_x, 14) ^ ROTR(_x, 18) ^ ROTR(_x, 41))
@@ -67,12 +76,17 @@ of the three inputs bits for x y and z at this index. [3]
 #define Sig1(_x) (ROTR(_x, 19) ^ ROTR(_x, 61) ^ SHR(_x, 6))
 ```
 
+![Sigmas](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
+
 # Block
 SHA-512 works on blocks of 1024 bits.
 ```c
 union Block {
+    // 8 x 128 = 1024 - dealing with block as bytes.
     BYTE bytes[128];
-    WORD words[16];
+    // 32 x 16 = 1024 - dealing with block as words.
+    WORD words[32];
+    // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
     uint64_t sixF[16];
 };
 ```
@@ -113,8 +127,11 @@ const WORD K[] = {
 };
 ```
 
+![k](https://user-images.githubusercontent.com/26766163/114939420-4f41c680-9e38-11eb-83a9-fe5f681b71f1.png)
+
 
 # Get Next Block. [5] & [6]
+## Padding
 Returns 1 if it created a new block from original message or padding.
 Returns 0 if all padded message has already been consumed.
 
@@ -182,7 +199,8 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
 
 # Get the Next Hash
 SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
-designed to make it difficult to reverse the process - [5].
+
+The SHA-512 hash computation is the part that makes it irreversible.
 ```c
 int next_hash(union Block *M, WORD H[]) {
     // Message schedule, [1] Section 6.4.2
@@ -261,7 +279,11 @@ int sha512(FILE *f, WORD H[]) {
 ```
 
 # Main
-Run the program
+Bring in the pre-processing with the initial hash value 'H'
+
+![H](https://user-images.githubusercontent.com/26766163/114939572-8ca65400-9e38-11eb-8f03-6f3ee72862f4.png)
+
+Allow a file to be read from a command line argument & hash it.
 
 ```c
 int main(int argc, char *argv[]) {
@@ -284,15 +306,25 @@ int main(int argc, char *argv[]) {
     // File pointer for reading.
     FILE *f;
 
-    // Error checking to show if no file was specified in the cli argument.
+    // --help in command line - [7].
+    if (argc == 2 && strcmp(argv[1], "--help")==0) {
+        printf("SHA-512 Calculator --help \n");
+        printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
+        printf("\nPlease make sure the file path and type is correct. \n");
+        return 0;
+    }
+
+    // Error checking to show if no file was specified in the command line argument.
     if (argc != 2) {
-        printf("Expected filename in argument \n");
+        printf("Expected filename in argument. \n");
+        printf("\nType './sha512calculator --help' for more info. \n");
         return 1;
     }
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        printf("Not able to read file %s. \n", argv[1]);
+        printf("Not able to read file %s \n", argv[1]);
+        printf("\nType './sha512calculator --help' for more info. \n");
         return 1;
     }
 
@@ -302,11 +334,10 @@ int main(int argc, char *argv[]) {
     // Print the final SHA-512 hash.
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
-    printf("\n");
+    printf("  %s\n", argv[1]);
 
     // Close the file.
     fclose(f);
 
     return 0;
-}
 ```

@@ -1,7 +1,7 @@
 /*
  * John Shields - G00348436
  * SHA-512 Calculator
- * A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
+ * A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
  *
  * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
  * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
@@ -12,6 +12,7 @@
  * [7] https://stackoverflow.com/questions/20076001/how-do-i-create-a-help-option-in-a-command-line-program-in-c-c
  */
 
+// Necessary libraries.
 #include <stdio.h>
 #include <inttypes.h>
 #include <byteswap.h>
@@ -65,8 +66,11 @@ const int _i = 1;
 
 // SHA-512 works on blocks of 1024 bits.
 union Block {
+    // 8 x 128 = 1024 - dealing with block as bytes.
     BYTE bytes[128];
-    WORD words[16];
+    // 32 x 16 = 1024 - dealing with block as words.
+    WORD words[32];
+    // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
     uint64_t sixF[16];
 };
 

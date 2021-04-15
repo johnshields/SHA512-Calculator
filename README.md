@@ -70,7 +70,7 @@ For example, when a user fills out a registration form for a website with a pass
 * Option 3
   * If your machine is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
-## How to Run 
+## How to Run
 
 * Step 1:
   * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
@@ -93,7 +93,7 @@ $ make
 * Step 3:
   * Run sha512calculator with a command line argument of any file.
 ```bash
-$ ./sha512calculator /test_inputs/seasalt.txt
+$ ./sha512calculator test_inputs/seasalt.txt
 ```
 
 ``seasalt.txt`` contains the noun 'sea salt'.
@@ -101,7 +101,7 @@ $ ./sha512calculator /test_inputs/seasalt.txt
 When the program is ran with this file the hash value should look like this:
 
 ```bash
-$ ./sha512calculator /test_inputs/seasalt.txt
+$ ./sha512calculator test_inputs/seasalt.txt
 fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf
 ```
 
@@ -114,23 +114,23 @@ With the Makefile you can do tests.
 $ make
 ```
 * Step 2
-  * You will need to make `tests.sh` runnable. 
+  * You will need to make `tests.sh` runnable.
 ```bash
 $ chmod u+x tests.sh
 ```
 * Step 3
   * Call in the `make test`
-  
+
 ```bash
 $ make test
 ```
 
-After running this command it will test the program with all the files in test_inputs.txt against [sha512sum](https://command-not-found.com/sha512sum).
+After running this command it will test the program with all the files in the directory `test_inputs` against [sha512sum](https://command-not-found.com/sha512sum).
 
 You can expect to see this output:
 ```bash
  $ make test
- 
+
 ./tests.sh
 
 Checking file test_inputs/abc.txt
@@ -216,44 +216,49 @@ for (t = 0; t < 80; t++) {
 ```c
 H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)
 ```
- [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2
+[[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2
 
 From the statements and demonstration above, it is pretty apparent why the SHA-512 is irreversible.
 
 ## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
-An algorithm of such would require a lot of time and a lot of trial and error. 
-Perhaps artificial intelligence could add this process. 
-The Heuristic Simulated Annealing algorithm is used to crack ciphers. 
-A common practice with heuristics is breaking a cipher by generating many keys, decrypt a cipher-text with each key, and then examine the resultant plaintext. 
-This technique is very effective for breaking classical ciphers and has been shown to work well for Affine, Autokey, Bifid, Playfair, and Four-Square ciphers. 
-[[13]](https://en.wikipedia.org/wiki/One-time_pad) & [[14]](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/) However, 
+An algorithm of such would require a lot of time and a lot of trial and error.
+Perhaps artificial intelligence could add this process.
+The Heuristic Simulated Annealing algorithm is used to crack ciphers.
+A common practice with heuristics is breaking a cipher by generating many keys, decrypt a cipher-text with each key, and then examine the resultant plaintext.
+This technique is very effective for breaking classical ciphers and has been shown to work well for Affine, Autokey, Bifid, Playfair, and Four-Square ciphers.
+[[13]](https://en.wikipedia.org/wiki/One-time_pad) & [[14]](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/) However,
 these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
 As said above, the message gets lost in a hash, so decipher algorithm would not work for this situation.
 
-Machine Learning is another possibility to use against hashes. A Neural Network (NN) could be trained with hash values and expected original messages. 
-This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings. 
-This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc. 
-A data set of such would take some time to put together. 
-Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time. 
+Machine Learning is another possibility to use against hashes. A Neural Network (NN) could be trained with hash values and expected original messages.
+This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings.
+This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc.
+A data set of such would take some time to put together.
+Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time.
 An NN could crack smaller hash algorithms such as the SHA-1, SHA-2, SHA-3, and MD5.
-For SHA-1, a 
-"NN can invert 1 round with positive probability; for two rounds, there are at least ten misses, 
-then the number of misses becomes more significant than the number of matched bits. 
-The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible; 
-the quick-convergence-to 1-2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
+For SHA-1, a
+"NN can invert 1 round with positive probability; for two rounds, there are at least ten misses,
+then the number of misses becomes more significant than the number of matched bits.
+The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible;
+the quick-convergence-to 1-2 flaws of (unadjusted) fuzzy ops contributes to this barrier.
 Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf) (Page 8).
-Keep in mind that this hash 'translation' is for SHA-1. Having a NN tackle an algorithm such as the SHA-256 or SHA-512 would not be significantly achievable. 
-Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings. 
+Keep in mind that this hash 'translation' is for SHA-1. Having a NN tackle an algorithm such as the SHA-256 or SHA-512 would not be significantly achievable.
+Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings.
 It might be able to get part of it but not whole.
 
-Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
-The average amount of work required is proportional to the number of zero bits needed and checked with a single hash. 
+Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins with zero bits.
+The average amount of work required is proportional to the number of zero bits needed and checked with a single hash.
 Even then, with a brute force attempt to put the SHA-256 back into its original message in bitcoin,
 the process is working against thousands of machines as bitcoin uses a Peer-to-Peer system. [[16]](https://bitcoin.org/bitcoin.pdf)
 This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and require some time to achieve.
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
-
-
+Finding a hash digest beginning with at least twelve zeros would be a one-in-a-million chance. Eighteen zeros are possible.
+Hashes are allowed to have more than eighteen zeros but not any less. This is where Bitcoin mining comes in.
+Bitcoin mining is a critical component of the Bitcoin system's protection.
+Bitcoin miners group several Bitcoin transactions into a block,
+then perform a cryptographic operation known as hashing zillions of times until they find a unique, scarce hash value.
+By this time, the block has now been mined and is now part of the Bitcoin network. In and by itself, the hashing business accomplishes nothing useful.
+Nonetheless, the difficulty of finding a viable block means that no one person has the resources to take over the Bitcoin system. [[3]](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html)
 
 ###### END OF README
