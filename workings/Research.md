@@ -183,15 +183,18 @@ https://arxiv.org/pdf/1901.02438.pdf
 
 Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
 The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash.
+Even then with a brute force attempt to put the SHA-256 back into its original message in bitcoin, 
+it is working against thousands of machines as bitcoin uses a Peer-to-Peer system. 
 This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve. 
 
 https://bitcoin.org/bitcoin.pdf
 
 
 ### How difficult is it to find a hash digest beginning with at least twelve zeros?
-
 * Bitcoin - SHA-256
 * http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html
+
+
 
 ***
 ###### END OF RESEARCH

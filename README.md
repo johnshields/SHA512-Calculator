@@ -187,27 +187,27 @@ This technique is very effective for breaking classical ciphers and has been sho
 these ciphers are not like hashes as the message is still in there. Therefore, the message can be found through all the jumbled characters.
 As said above, the message gets lost in a hash, so decipher algorithm would not work for this situation.
 
-Machine Learning is another possibility to use against hashes. 
-A Neural Network (NN) could be trained with hash values and expected original messages. 
-This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings.
-This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc.
-A data set of such would take some time to put together.
-Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time.
-An NN could crack smaller hash algorithms such as the SHA-1, SHA-2, SHA-3, and MD5. 
+Machine Learning is another possibility to use against hashes. A Neural Network (NN) could be trained with hash values and expected original messages. 
+This process would require a comprehensive and relevant data set for input messages that give each of the possible 512-bit strings. 
+This data set would have to cover the most common words, number, unique letters, characters, hexadecimal, etc. 
+A data set of such would take some time to put together. 
+Even then, with a data set, this would require a lot of time, and NNs rely on patterns that hashes do not have most of the time. 
+An NN could crack smaller hash algorithms such as the SHA-1, SHA-2, SHA-3, and MD5.
 For SHA-1, a 
 "NN can invert 1 round with positive probability; for two rounds, there are at least ten misses, 
 then the number of misses becomes more significant than the number of matched bits. 
 The complete hash for more than 5–6 rounds with the accordingly long messages is almost invertible; 
 the quick-convergence-to 1-2 flaws of (unadjusted) fuzzy ops contributes to this barrier. 
-Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf) (Page 8)
-Keep in mind that this hash 'translation' is for SHA-1. Having a NN tackle an algorithm such as the SHA-256 or SHA-512 would not be very achievable. 
-Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings.
-It might be able to get part of it but not whole. 
+Partial matching of a small group of hash bits is possible." [[15]](https://arxiv.org/pdf/1901.02438.pdf) (Page 8).
+Keep in mind that this hash 'translation' is for SHA-1. Having a NN tackle an algorithm such as the SHA-256 or SHA-512 would not be significantly achievable. 
+Personally, at this current time, I believe that a NN does not stand a chance of finding the input messages that give each of the possible 512-bit strings. 
+It might be able to get part of it but not whole.
 
 Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
-The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash. [[16]](https://bitcoin.org/bitcoin.pdf) (Page 3, Section 4)
-This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve.
-
+The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash.
+Even then with a brute force attempt to put the SHA-256 back into its original message in bitcoin, 
+it is working against thousands of machines as bitcoin uses a Peer-to-Peer system. [[16]](https://bitcoin.org/bitcoin.pdf)
+This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve. 
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
 
