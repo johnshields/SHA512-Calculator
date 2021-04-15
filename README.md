@@ -55,6 +55,7 @@ For example, when a user fills out a registration form for a website with a pass
 # Run the Program
 ### Requirements
 * [Git](https://git-scm.com/downloads)
+* [sha512sum](https://command-not-found.com/sha512sum) (For Testing)
 
 
 * Option 1
@@ -69,7 +70,7 @@ For example, when a user fills out a registration form for a website with a pass
 * Option 3
   * If your machine is a Mac, you can use [Clang](https://clang.llvm.org/get_started.html).
 
-## How to Run
+## How to Run by making an `executable file`
 
 * Step 1:
   * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
@@ -80,36 +81,97 @@ $ cd program
 ```
 
 * Step 2:
- * Make main.c into an executable file.
+  * Make main.c into an executable file.
 ```bash
 $ make main
 ```
 
 * Step 3:
- * Run main with a command line argument of any file.
+  * Run main with a command line argument of any file.
 ```bash
-$ ./main input.txt
+$ ./main /test_inputs/seasalt.txt
 ```
 
-``input.txt`` contains the noun 'sea salt'.
+``seasalt.txt`` contains the noun 'sea salt'.
 
-When main is ran with this file the hash value should look like this:
+When the program is ran with this file the hash value should look like this:
 
 ```bash
-$ ./main input.txt
+$ ./main /test_inputs/seasalt.txt
 fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf
-```  
-
-Now that you have the program up and running change the text in `input.txt` and run main again to see what the program can digest it to!
-
-You can test it [here](https://emn178.github.io/online-tools/sha512.html) on an online SHA-512.
-
-Or by typing this command in to the terminal with the file you wish to hash.
-```bash
-$ sha512sum input.txt
 ```
 
-For more information on this command refer to [sha512sum](https://command-not-found.com/sha512sum).
+## How to Run by using the `Makefile`
+* Step 1:
+  * In your chosen Terminal or Command Line if you have ``gcc``  or ``Clang``. <br>
+    Open a directory of your choice and enter:
+```bash
+$ git clone https://github.com/johnshields/SHA512-Calculator.git
+$ cd program
+```
+
+* Step 2:
+  * Call the Makefile to make an executable by entering:
+```bash
+$ make
+```
+
+* Step 3:
+  * Run sha512calculator with a command line argument of any file.
+```bash
+$  ./sha512calculator /test_inputs/seasalt.txt
+```
+
+When the program is ran with this file the hash value should look like this:
+
+```bash
+$ ./sha512calculator /test_inputs/seasalt.txt
+fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf
+```
+
+## Testing
+Will the Makefile you can do tests
+
+* Step 1
+  * Call the Makefile to make an executable by entering:
+```bash
+$ make
+```
+* Step 2
+  * Call in the `make test`
+  
+```bash
+$ make test
+```
+
+After running this command it will test the program with all the files in test_inputs.txt against [sha512sum](https://command-not-found.com/sha512sum).
+
+You can expect to see this output:
+```bash
+ $ make test
+ 
+./tests.sh
+
+Checking file test_inputs/abc.txt
+sha512calculator:  ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f test_inputs/abc.txt
+sha512sum:         ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f test_inputs/abc.txt
+Pass
+
+Checking file test_inputs/barry_white.txt
+sha512calculator:  65595324ac2b1372f131ff236698c1cc0e5162b7748e13d4eb3a592b28e2ca4694379f0a3b676ba5b9db36d2797a5cc67bcd0637554c5f62a94a3afd3d7960b7 test_inputs/barry_white.txt
+sha512sum:         65595324ac2b1372f131ff236698c1cc0e5162b7748e13d4eb3a592b28e2ca4694379f0a3b676ba5b9db36d2797a5cc67bcd0637554c5f62a94a3afd3d7960b7 test_inputs/barry_white.txt
+Pass
+
+Checking file test_inputs/lorem.txt
+sha512calculator:  3b8802540e449f6927aed811dbd41f7209a412dcb581a1a6ef5adf77f04808034700342a7ce0975157be493308e6d2655d0ac95b4b141f4d99203e871a2b6267 test_inputs/lorem.txt
+sha512sum:         3b8802540e449f6927aed811dbd41f7209a412dcb581a1a6ef5adf77f04808034700342a7ce0975157be493308e6d2655d0ac95b4b141f4d99203e871a2b6267 test_inputs/lorem.txt
+Pass
+
+Checking file test_inputs/seasalt.txt
+sha512calculator:  fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf test_inputs/seasalt.txt
+sha512sum:         fc8abd5f06410239f88596955f644d769cbeb625c847c90e400fe0b44b5fa4876c4fc59d8e7b6b2baedb4ae5757cfaf65f24278bdb0a9be47bca48f66d0abfaf test_inputs/seasalt.txt
+Pass
+```
 ***
 
 # Questions & Answers
@@ -204,10 +266,10 @@ Personally, at this current time, I believe that a NN does not stand a chance of
 It might be able to get part of it but not whole.
 
 Bitcoin employs a 'Proof-of-Work' system that entails scanning a hashed value. With the SHA-256, the hash begins zero bits. 
-The average amount of work required is proportional to the number of zero bits required, and can be checked with a single hash.
-Even then with a brute force attempt to put the SHA-256 back into its original message in bitcoin, 
-it is working against thousands of machines as bitcoin uses a Peer-to-Peer system. [[16]](https://bitcoin.org/bitcoin.pdf)
-This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and would require some time to achieve. 
+The average amount of work required is proportional to the number of zero bits needed and checked with a single hash. 
+Even then, with a brute force attempt to put the SHA-256 back into its original message in bitcoin,
+the process is working against thousands of machines as bitcoin uses a Peer-to-Peer system. [[16]](https://bitcoin.org/bitcoin.pdf)
+This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and require some time to achieve.
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
 
