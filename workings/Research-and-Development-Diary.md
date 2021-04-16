@@ -124,8 +124,10 @@ The SHA-512 program is officially complete.
 ![image](https://user-images.githubusercontent.com/26766163/114074001-d1137c00-989b-11eb-9cb8-7be7bcc3634f.png)
 
 ## Week Eleven
-This week I added a '--help' to the program which says what to do when a command is wrong. 
+This week I added a '--help' to the program which says what to do when a command is wrong and 
+an error check if more than one file is in a command line argument. 
 Also in the labs this week Makefiles and make tests were covered so I added those to the program too. 
+Now the program can be tested against `sha512sum` with all the files in `test_inputs`. 
 
 ***
 ###### END OF RESEARCH AND DEVELOPMENT DIARY

@@ -267,6 +267,7 @@ int main(int argc, char *argv[]) {
     FILE *f;
 
     // --help in command line - [7].
+    const char *help = "\nType './sha512calculator --help' for more info. \n";
     if (argc == 2 && strcmp(argv[1], "--help")==0) {
         printf("SHA-512 Calculator --help \n");
         printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
@@ -274,17 +275,24 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+    // If more than 2 arguments are entered (more than one file).
+    if (argc > 2) {
+        printf("Unreachable command. \n");
+        printf("%s", help);
+        return 1;
+    }
+
     // Error checking to show if no file was specified in the command line argument.
     if (argc != 2) {
         printf("Expected filename in argument. \n");
-        printf("\nType './sha512calculator --help' for more info. \n");
+        printf("%s", help);
         return 1;
     }
 
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
         printf("Not able to read file %s \n", argv[1]);
-        printf("\nType './sha512calculator --help' for more info. \n");
+        printf("%s", help);
         return 1;
     }
 
@@ -294,7 +302,7 @@ int main(int argc, char *argv[]) {
     // Print the final SHA-512 hash.
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
-    printf("  %s\n", argv[1]);
+    printf("  %s\n", argv[1]); // print file name.
 
     // Close the file.
     fclose(f);

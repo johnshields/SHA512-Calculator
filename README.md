@@ -267,18 +267,18 @@ Finding a hash digest beginning with at least twelve zeros is a shot in the dark
 
 ![image](https://user-images.githubusercontent.com/26766163/115027554-c66c6e80-9ebb-11eb-82e6-18cb2be0eb4a.png)
 
-On [Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-force) an image shows a C [program](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-quad-pthread.c) found a SHA-512 value with nine zeros (See the Figure below).
+On [Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-force) an image shows a C [program](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-quad-pthread.c) found a SHA-512 hash value with nine zeros (See the Figure below).
 
 [![image](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-running.png)](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-running.png)
 
-This goes to shows that it is quite challenging to find a hash with twelve zeros even by brute force.
+This program took 5.261 billion trails to find a hash with just nine zeros. This goes to shows that it is quite challenging to find a hash with at least twelve zeros even by brute force.
 
-According to a Stack Exchange post titled *[Which is the smallest hash that has ever been hashed?](https://bitcoin.stackexchange.com/a/105023)*. A reply showed a program that found four block hashes in Bitcoin beginning with twelve zeros in Java (See Figure below).   
+However, according to a Stack Exchange post titled *[Which is the smallest hash that has ever been hashed?](https://bitcoin.stackexchange.com/a/105023)*. A reply showed a program that found four block hashes in Bitcoin beginning with twelve zeros in Java (See Figure below).   
 
 [![image](https://user-images.githubusercontent.com/26766163/115032196-f5d1aa00-9ec0-11eb-8371-bdc8feef0439.png)](https://bitcoin.stackexchange.com/a/105023)
 
-As the figure shows other hashes above twelve were also found.
+As the figure shows other hashes above twelve zeros were also found in some other blocks.
 
-In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task. Bitcoin appears to be the only place where this could happen.
+In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task and Bitcoin appears to be the only place where this could happen.
 
 ###### END OF README
