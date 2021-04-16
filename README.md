@@ -169,7 +169,12 @@ It is essentially possible to create two repositories with the same head commit 
 An attacker could potentially selectively serve either repository to targeted users.
 This vulnerability will require attackers to compute their collision. [[12]](http://shattered.io/)
 
-SHA-512 was introduced to surmount these vulnerabilities. However, the original message must be complex. If the message was `abc` or anything being 1-3 characters long, it could be cracked with a brute force approach. Hence, most websites or apps ask for one uppercase and lowercase letters, a number, and a special character. e.g `@ $ * _ - /`. Having all these unique items in a password makes the hash even stronger.
+SHA-512 was introduced to surmount these vulnerabilities. However, the original message must be complex. If the message was `abc` or anything being 1-3 characters long, it could be cracked (See Figure below).
+
+##### The SHA-512 hash value for `abc` passing on a cracker site.
+[![image](https://user-images.githubusercontent.com/26766163/115011154-2fe18280-9ea6-11eb-82c7-f6ab2e956025.png)](https://crackstation.net/)
+
+Hence, most websites or apps ask for one uppercase and lowercase letters, a number, and a special character. e.g `@ $ * _ - /`. Having all these unique items in a password makes the hash even stronger.
 
 For example, the SHA-512 hash value for the character `@` is:
 
@@ -178,6 +183,9 @@ e97b9cc0c1e22c66bff31f6c457c2b95b9f9af955c8a098e043734df7439031fd1c6748a139d9907
 ```
 
 As you can see, it is quite complex, and a combination of unique characters makes the hash even more complicated. Just reversing the algorithm just for one character would be difficult and require a 'Brute Force' approach to crack one character. If the message is complex with many special characters, e.g., `@P&a$ss@w^/o|-r#_~d€¬56*`. It would be like going up against a supercomputer such as the Fugaku with a Nokia 3310.
+
+##### The SHA-512 hash value for `@P&a$ss@w^/o|-r#_~d€¬56*` failing on a cracker site.
+[![image](https://user-images.githubusercontent.com/26766163/115011549-aaaa9d80-9ea6-11eb-8446-9ae236ebe5c8.png)](https://crackstation.net/)
 
 Hashing often gets confused with encryption. Encryption can be reversed as the original message is still in there. As with encryption, it is turned into 'gibberish.' Whereas with hashing, the original message is lost. If the SHA-512 were potentially reversible, its source code would not be available worldwide as the source code could outline a possible way to reverse it. Since it is not, it is allowed to be boasted about and thought highly of.
 
@@ -253,12 +261,24 @@ the process is working against thousands of machines as bitcoin uses a Peer-to-P
 This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and require some time to achieve.
 
 ## How difficult is it to find a hash digest beginning with at least twelve zeros?
-Finding a hash digest beginning with at least twelve zeros would be a one-in-a-million chance. Eighteen zeros are possible.
-Hashes are allowed to have more than eighteen zeros but not any less. This is where Bitcoin mining comes in.
-Bitcoin mining is a critical component of the Bitcoin system's protection.
-Bitcoin miners group several Bitcoin transactions into a block,
-then perform a cryptographic operation known as hashing zillions of times until they find a unique, scarce hash value.
-By this time, the block has now been mined and is now part of the Bitcoin network. In and by itself, the hashing business accomplishes nothing useful.
-Nonetheless, the difficulty of finding a viable block means that no one person has the resources to take over the Bitcoin system. [[3]](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html)
+Finding a hash digest beginning with at least twelve zeros is a shot in the dark. In Bitcoin, a "hit" hash needs to start with seventeen zeros, which is where Bitcoin mining comes in. Bitcoin mining is a critical component of the Bitcoin system's protection. Bitcoin miners group several Bitcoin transactions into a block, then perform a cryptographic operation known as hashing zillions of times until they find a unique, scarce hash value. By this time, the block has now been mined and is now part of the Bitcoin network. In and by itself, the hashing business accomplishes nothing useful. Nonetheless, the difficulty of finding a viable block means that no one person has the resources to take over the Bitcoin system. [[3]](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html) This is where brute force strikes again. In order to achieve a hash with a certain number of zeros, many attempts have to be made as hash functions such as the SHA-256 and SHA-512 are irreversible. While it is possible, it would take a considerable amount of time.
+
+[Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-force) developed a couple of C and Python programs. These programs use brute force to find the lowest SHA-512 hash value. In Jupyter Notebook, I adapted the project's [Python code](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512.py) to see if I could find a SHA-256 hash with twelve zeros. In the program, the most common number of zeros is between four and seven. It takes 16,098,229 trails to find seven zeros. This process took quite some time, and after that, the program bails out, or it is taking a very long time to find any more hash values beginning with more than seven zeros (See Figure below).
+
+![image](https://user-images.githubusercontent.com/26766163/115027554-c66c6e80-9ebb-11eb-82e6-18cb2be0eb4a.png)
+
+On [Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-force) an image shows a C [program](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-quad-pthread.c) found a SHA-512 value with nine zeros (See the Figure below).
+
+[![image](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-running.png)](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512-running.png)
+
+This goes to shows that it is quite challenging to find a hash with twelve zeros even by brute force.
+
+According to a Stack Exchange post titled *[Which is the smallest hash that has ever been hashed?](https://bitcoin.stackexchange.com/a/105023)*. A reply showed a program that found four block hashes in Bitcoin beginning with twelve zeros in Java (See Figure below).   
+
+[![image](https://user-images.githubusercontent.com/26766163/115032196-f5d1aa00-9ec0-11eb-8371-bdc8feef0439.png)](https://bitcoin.stackexchange.com/a/105023)
+
+As the figure shows other hashes above twelve were also found.
+
+In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task. Bitcoin appears to be the only place where this could happen.
 
 ###### END OF README
