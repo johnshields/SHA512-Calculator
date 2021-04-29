@@ -273,13 +273,11 @@ int main(int argc, char *argv[]) {
         printf("For example: './sha512calculator test_inputs/seasalt.txt'\n");
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
-    }
-        // If more than 2 arguments are entered (more than one file).
+    } // else if more than 2 arguments are entered (more than one file).
     else if (argc > 2) {
         printf("Unreachable command. \n%s", help);
         return 1;
-    }
-        // Error checking to show if no file was specified in the command line argument.
+    } // else if no file was specified in the command line argument.
     else if (argc != 2) {
         printf("Expected filename in argument. \n%s", help);
         return 1;
