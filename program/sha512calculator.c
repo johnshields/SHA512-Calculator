@@ -274,22 +274,19 @@ int main(int argc, char *argv[]) {
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
     }
-    // If more than 2 arguments are entered (more than one file).
+        // If more than 2 arguments are entered (more than one file).
     else if (argc > 2) {
-        printf("Unreachable command. \n");
-        printf("%s", help);
+        printf("Unreachable command. \n%s", help);
         return 1;
     }
-    // Error checking to show if no file was specified in the command line argument.
+        // Error checking to show if no file was specified in the command line argument.
     else if (argc != 2) {
-        printf("Expected filename in argument. \n");
-        printf("%s", help);
+        printf("Expected filename in argument. \n%s", help);
         return 1;
     }
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        printf("Not able to read file %s \n", argv[1]);
-        printf("%s", help);
+        printf("Not able to read file %s \n%s", argv[1], help);
         return 1;
     }
 
