@@ -16,6 +16,7 @@
 14. [*decoding-a-substitution-cipher-using-simulated-annealing*](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/)
 15. [*Using fuzzy bits and neural networks to partially invert few rounds of some cryptographic hash functions*, Sergij V. Goncharov](https://arxiv.org/pdf/1901.02438.pdf)
 16. [*Bitcoin: A Peer-to-Peer Electronic Cash System*, Satoshi Nakamoto](https://bitcoin.org/bitcoin.pdf)
+17. [*Sha512 — Reverse lookup, unhash, and decrypt*, md5hashing](https://md5hashing.net/hash/sha512)
 
 ## Code
 1. [NIST -> ***Secure Hash Standard***](https://www.nist.gov/publications/secure-hash-standard)

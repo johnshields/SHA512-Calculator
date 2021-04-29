@@ -3,27 +3,28 @@
  * SHA-512 Calculator
  * A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
  *
+ * References:
  * [1] NIST: Secure Hash Standard
- *      URL: -> https://www.nist.gov/publications/secure-hash-standard
+ *      URL: https://www.nist.gov/publications/secure-hash-standard
  * [2] GeeksForGeeks: Bitwise operators in C/C++
- *      URL: -> https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+ *      URL: https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
  * [3] Stack Exchange: What does Maj and Ch mean in SHA-256 algorithm?
- *      URL: -> https://crypto.stackexchange.com/a/5360
+ *      URL: https://crypto.stackexchange.com/a/5360
  * [4] IBM Developer: Writing endian-independent code in C
- *      URL: -> https://developer.ibm.com/technologies/systems/articles/au-endianc/
+ *      URL: https://developer.ibm.com/technologies/systems/articles/au-endianc/
  * [5] Lab: SHA256 Calculating the hash
- *      URL: -> https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
+ *      URL: https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
  * [6] Lab: Endianness
- *      URL: -> https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+ *      URL: https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
  * [7] Stack Overflow: Create a --help option in a command-line program in C/C++
- *      URL: -> https://stackoverflow.com/a/20076145/15289693
+ *      URL: https://stackoverflow.com/a/20076145/15289693
  */
 
 // Necessary libraries.
 #include <stdio.h>
 #include <inttypes.h>
 #include <byteswap.h>
-// for --help in CLI
+// For --help in CLI.
 #include <string.h>
 
 // Words and bytes.
@@ -146,8 +147,7 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
             // Say this is the last block.
             *S = END;
         } else {
-            // Got to the end of the input message and not enough room
-            // in this block for all padding.
+            // Got to the end of the input message and not enough room in this block for all the padding.
             // Append a 1 bit (and seven 0 bits to make a full byte.)
             M->bytes[num_of_bytes] = 0x80;
             // Append 0 bits.
@@ -170,17 +170,14 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
     }
 
     // Swap the byte order of the words if is_little_endian.
-    if (is_little_endian()) {
-        for (int i = 0; i < 16; i++) {
-            M->words[i] = bswap_64(M->words[i]);
-        }
-    }
+    if (!is_little_endian()) return 1;
+    for (int i = 0; i < 16; i++) M->words[i] = bswap_64(M->words[i]);
     return 1;
 }
 
 // Get the Next Hash
 // SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
-// designed to make it difficult to reverse the process - [5].
+// Designed to make it difficult to reverse the process - [5].
 int next_hash(union Block *M, WORD H[]) {
     // Message schedule, [1] Section 6.4.2
     WORD W[128];
@@ -190,10 +187,8 @@ int next_hash(union Block *M, WORD H[]) {
     WORD a, b, c, d, e, f, g, h, T1, T2;
 
     // Prepare the message schedule - [1] Section 6.4.2, part 1.
-    for (t = 0; t < 16; t++)
-        W[t] = M->words[t];
-    for (t = 16; t < 80; t++)
-        W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
+    for (t = 0; t < 16; t++) W[t] = M->words[t];
+    for (t = 16; t < 80; t++) W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
 
     // Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value.
     // [1] Section 6.4.2, part 2.
@@ -247,9 +242,7 @@ int sha512(FILE *f, WORD H[]) {
     enum Status S = READ;
 
     // Loop through the (preprocessed) blocks.
-    while (next_block(f, &M, &S, &num_of_bits)) {
-        next_hash(&M, H);
-    }
+    while (next_block(f, &M, &S, &num_of_bits)) next_hash(&M, H);
     return 0;
 }
 
@@ -273,12 +266,11 @@ int main(int argc, char *argv[]) {
     // File pointer for reading.
     FILE *f;
 
-    const char *help = "\nType './sha512calculator --help' for more info. \n";
-
     // --help in command line - [7].
+    const char *help = "\nType './sha512calculator --help' for more info. \n";
     if (argc == 2 && strcmp(argv[1], "--help") == 0) {
-        printf("SHA-512 Calculator --help \n");
-        printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
+        printf("SHA-512 Calculator --help \n\nHash a file with the program by specifying a file. \n");
+        printf("For example: './sha512calculator test_inputs/seasalt.txt'\n");
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
     }
