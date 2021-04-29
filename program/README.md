@@ -4,13 +4,15 @@
 
 A program in the C programming language to calculate the SHA512 (Secure Hash Standard) value of an input file.
 
-* [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
-* [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
-* [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
-* [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
-* [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
-* [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
-* [7] https://stackoverflow.com/questions/20076001/how-do-i-create-a-help-option-in-a-command-line-program-in-c-c
+### References
+1. [NIST -> ***Secure Hash Standard***](https://www.nist.gov/publications/secure-hash-standard)
+2. [GeeksForGeeks -> ***Bitwise operators in C/C++***](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
+3. [Stack Exchange -> ***What does Maj and Ch mean in SHA-256 algorithm?***](https://crypto.stackexchange.com/a/5360)
+4. [IBM Developer -> ***Writing endian-independent code in C***](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
+5. [Lab -> ***SHA256: Calculating the hash***](https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953)
+6. [Lab -> ***Endianness***](https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b)
+7. [Stack Overflow -> ***Create a --help option in a command-line program in C/C++***](https://stackoverflow.com/a/20076145/15289693)
+***
 
 ## Necessary libraries.
 ```c
@@ -54,29 +56,28 @@ Bitwise Operators - [1] (Page 5) + [2]
 Ch stands for choose: The x input chooses if the output is from y or from z.
 For each bit index, that result bit is according to the bit from y or z  at this index,
 depending on if the bit from x is 1 or 0. [3]
+
+![ch](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
 ```c
 #define CH(_x, _y, _z) ((_x & _y) ^ (~_x & _z))
 ```
 
-![ch](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
-
 Maj stands for majority: for each bit index, that result bit is according to the majority
 of the three inputs bits for x y and z at this index. [3]
+
+![maj](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
 ```c
 #define MAJ(_x, _y, _z) ((_x & _y) ^ (_x & _z) ^ (_y & _z))
 ```
 
-![maj](https://user-images.githubusercontent.com/26766163/109430258-56cc1e00-79f8-11eb-9790-d504cb43babc.png)
-
 ## SIGMA functions - [1] (Page 11)
+![Sigmas](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
 ```c
 #define SIG0(_x) (ROTR(_x, 28) ^ ROTR(_x, 34) ^ ROTR(_x, 39))
 #define SIG1(_x) (ROTR(_x, 14) ^ ROTR(_x, 18) ^ ROTR(_x, 41))
 #define Sig0(_x) (ROTR(_x, 1) ^ ROTR(_x, 8) ^ SHR(_x, 7))
 #define Sig1(_x) (ROTR(_x, 19) ^ ROTR(_x, 61) ^ SHR(_x, 6))
 ```
-
-![Sigmas](https://user-images.githubusercontent.com/26766163/109554954-d9bea880-7acc-11eb-8464-cd5aea42efd6.png)
 
 # Block
 SHA-512 works on blocks of 1024 bits.
@@ -102,6 +103,8 @@ enum Status {
 # WORD K
 This const represents the first 64 bits of the fractional parts of the cube roots of the
 first eighty prime numbers. In hex, these constant words are from left to right. [1] (Page 12)
+
+![k](https://user-images.githubusercontent.com/26766163/114939420-4f41c680-9e38-11eb-83a9-fe5f681b71f1.png)
  ```c
 const WORD K[] = {
         0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
@@ -126,8 +129,6 @@ const WORD K[] = {
         0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
 ```
-
-![k](https://user-images.githubusercontent.com/26766163/114939420-4f41c680-9e38-11eb-83a9-fe5f681b71f1.png)
 
 
 # Get Next Block. [5] & [6]
@@ -201,6 +202,12 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
 SHA-512 Hash Computation - [1] Section 6.4.1 (Page 24)
 
 The SHA-512 hash computation is the part that makes it irreversible.
+
+![part_1](https://user-images.githubusercontent.com/26766163/116558960-dc385580-a8f7-11eb-8933-3c7e144a937a.png)
+![part_2](https://user-images.githubusercontent.com/26766163/116559198-130e6b80-a8f8-11eb-84d4-423b0958bc8e.png)
+![part_3](https://user-images.githubusercontent.com/26766163/116559259-26213b80-a8f8-11eb-9552-5ff479d6548b.png)
+![part_4](https://user-images.githubusercontent.com/26766163/116559305-376a4800-a8f8-11eb-8a8f-b7212ba14da5.png)
+
 ```c
 int next_hash(union Block *M, WORD H[]) {
     // Message schedule, [1] Section 6.4.2
@@ -279,11 +286,14 @@ int sha512(FILE *f, WORD H[]) {
 ```
 
 # Main
-Bring in the pre-processing with the initial hash value 'H'
+Bring in the pre-processing with the initial hash value 'H' - Section 5.3.5 - [1] (Page 15)
 
-![H](https://user-images.githubusercontent.com/26766163/114939572-8ca65400-9e38-11eb-8f03-6f3ee72862f4.png)
+![H](https://user-images.githubusercontent.com/26766163/116559529-76000280-a8f8-11eb-9c39-8c1609bc7392.png)
 
 Allow a file to be read from a command line argument & hash it.
+
+Print the final SHA-512 hash.  - [1] Section 6.4.1 (Page 26)
+![final_hash](https://user-images.githubusercontent.com/26766163/116559713-9fb92980-a8f8-11eb-99a4-911339e56573.png)
 
 ```c
 int main(int argc, char *argv[]) {
@@ -341,3 +351,6 @@ int main(int argc, char *argv[]) {
 
     return 0;
 ```
+***
+
+###### END OF README

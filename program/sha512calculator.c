@@ -3,13 +3,20 @@
  * SHA-512 Calculator
  * A program in the C programming language to calculate the SHA-512 (Secure Hash Standard) value of an input file.
  *
- * [1] Secure Hash Standard - https://www.nist.gov/publications/secure-hash-standard
- * [2] https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
- * [3] https://crypto.stackexchange.com/questions/5358/what-does-maj-and-ch-mean-in-sha-256-algorithm
- * [4] https://developer.ibm.com/technologies/systems/articles/au-endianc/
- * [5] https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
- * [6] https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
- * [7] https://stackoverflow.com/questions/20076001/how-do-i-create-a-help-option-in-a-command-line-program-in-c-c
+ * [1] NIST: Secure Hash Standard
+ *      URL: -> https://www.nist.gov/publications/secure-hash-standard
+ * [2] GeeksForGeeks: Bitwise operators in C/C++
+ *      URL: -> https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+ * [3] Stack Exchange: What does Maj and Ch mean in SHA-256 algorithm?
+ *      URL: -> https://crypto.stackexchange.com/a/5360
+ * [4] IBM Developer: Writing endian-independent code in C
+ *      URL: -> https://developer.ibm.com/technologies/systems/articles/au-endianc/
+ * [5] Lab: SHA256 Calculating the hash
+ *      URL: -> https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953
+ * [6] Lab: Endianness
+ *      URL: -> https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b
+ * [7] Stack Overflow: Create a --help option in a command-line program in C/C++
+ *      URL: -> https://stackoverflow.com/a/20076145/15289693
  */
 
 // Necessary libraries.

@@ -8,6 +8,16 @@ alt="GMIT Logo" width="500" height="200"/>
 #### John Shields - G00348436
 
 ***
+# README Contents
+* [About the SHA-512](https://github.com/johnshields/SHA512-Calculator#about-the-sha-512)
+* [Repository Contents](https://github.com/johnshields/SHA512-Calculator#repository-contents)
+* [Run the Program](https://github.com/johnshields/SHA512-Calculator#run-the-program)
+  - [Requirements](https://github.com/johnshields/SHA512-Calculator#requirements)
+  - [How to Run](https://github.com/johnshields/SHA512-Calculator#how-to-run)
+  - [Testing](https://github.com/johnshields/SHA512-Calculator#testing)
+* [Questions & Answers](https://github.com/johnshields/SHA512-Calculator#questions--answers)
+
+***
 
 # Project Details
 | **Project Title** | SHA-512 Program in C |
@@ -21,7 +31,6 @@ alt="GMIT Logo" width="500" height="200"/>
 ***
 # SHA-512 Calculator
 A program in the C programming language to calculate the SHA-512 value of an input file.
-
 
 All weekly Labs for the module are located in [this repository](https://github.com/johnshields/SHA-256).
 
@@ -52,6 +61,7 @@ For example, when a user fills out a registration form for a website with a pass
 * [README.md](https://github.com/johnshields/SHA512-Calculator/blob/main/README.md)
   - Documentation of the program's Details.
 
+***
 # Run the Program
 ### Requirements
 * [Git](https://git-scm.com/downloads)
@@ -156,7 +166,7 @@ Pass
 ***
 
 # Questions & Answers
-## Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?
+## 1. Why can't we reverse the SHA-512 algorithm to retrieve the original message from a hash digest?
 SHA-512 is designed to be difficult to reverse the process; otherwise, the algorithm would be pointless.
 The algorithm is often used for password hashing, thus why it is structured to be secure.
 The algorithm is a one-way function, meaning when a message gets passed through it, it is chopped and changed around using the logical functions ROTR, SHR, Maj, and Cha.
@@ -228,7 +238,7 @@ H0^(N)||H1^(N)||H2^(N)||H3^(N)||H4^(N)||H5^(N)||H6^(N)||H7^(N)
 
 From the statements and demonstration above, it is pretty apparent why the SHA-512 is irreversible.
 
-## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
+## 2. Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
 An algorithm of such would require a lot of time and a lot of trial and error.
 Perhaps artificial intelligence could add this process.
 The Heuristic Simulated Annealing algorithm is used to crack ciphers.
@@ -260,7 +270,7 @@ Even then, with a brute force attempt to put the SHA-256 back into its original 
 the process is working against thousands of machines as bitcoin uses a Peer-to-Peer system. [[16]](https://bitcoin.org/bitcoin.pdf)
 This process could lead to an algorithm that can find input messages that give each of the possible 512-bit strings and require some time to achieve.
 
-## How difficult is it to find a hash digest beginning with at least twelve zeros?
+## 3. How difficult is it to find a hash digest beginning with at least twelve zeros?
 Finding a hash digest beginning with at least twelve zeros is a shot in the dark. In Bitcoin, a "hit" hash needs to start with seventeen zeros, which is where Bitcoin mining comes in. Bitcoin mining is a critical component of the Bitcoin system's protection. Bitcoin miners group several Bitcoin transactions into a block, then perform a cryptographic operation known as hashing zillions of times until they find a unique, scarce hash value. By this time, the block has now been mined and is now part of the Bitcoin network. In and by itself, the hashing business accomplishes nothing useful. Nonetheless, the difficulty of finding a viable block means that no one person has the resources to take over the Bitcoin system. [[3]](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html) This is where brute force strikes again. In order to achieve a hash with a certain number of zeros, many attempts have to be made as hash functions such as the SHA-256 and SHA-512 are irreversible. While it is possible, it would take a considerable amount of time.
 
 [Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-force) developed a couple of C and Python programs. These programs use brute force to find the lowest SHA-512 hash value. In Jupyter Notebook, I adapted the project's [Python code](https://www.nayuki.io/res/lowest-sha512-value-by-brute-force/lowest-sha512.py) to see if I could find a SHA-256 hash with twelve zeros. In the program, the most common number of zeros is between four and seven. It takes 16,098,229 trails to find seven zeros. This process took quite some time, and after that, the program bails out, or it is taking a very long time to find any more hash values beginning with more than seven zeros (See Figure below).
@@ -280,5 +290,6 @@ However, according to a Stack Exchange post titled *[Which is the smallest hash 
 As the figure shows other hashes above twelve zeros were also found in some other blocks.
 
 In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task and Bitcoin appears to be the only place where this could happen.
+***
 
 ###### END OF README

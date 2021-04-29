@@ -1,4 +1,5 @@
 ## References & Resources
+## Research & Questions
 1. [*Secure Hash Standard*, Quynh H. Dang](https://www.nist.gov/publications/secure-hash-standard)
 2. [*Secure Hash Algorithms*, Brilliant.org](https://brilliant.org/wiki/secure-hashing-algorithms/)
 3. [*Mining Bitcoin with pencil and paper: 0.67 hashes per day*, Ken Shirriff's blog](http://www.righto.com/2014/09/mining-bitcoin-with-pencil-and-paper.html)
@@ -15,3 +16,12 @@
 14. [*decoding-a-substitution-cipher-using-simulated-annealing*](https://www.r-bloggers.com/2012/01/decoding-a-substitution-cipher-using-simulated-annealing/)
 15. [*Using fuzzy bits and neural networks to partially invert few rounds of some cryptographic hash functions*, Sergij V. Goncharov](https://arxiv.org/pdf/1901.02438.pdf)
 16. [*Bitcoin: A Peer-to-Peer Electronic Cash System*, Satoshi Nakamoto](https://bitcoin.org/bitcoin.pdf)
+
+## Code
+1. [NIST -> ***Secure Hash Standard***](https://www.nist.gov/publications/secure-hash-standard)
+2. [GeeksForGeeks -> ***Bitwise operators in C/C++***](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
+3. [Stack Exchange -> ***What does Maj and Ch mean in SHA-256 algorithm?***](https://crypto.stackexchange.com/a/5360)
+4. [IBM Developer -> ***Writing endian-independent code in C***](https://developer.ibm.com/technologies/systems/articles/au-endianc/)
+5. [Lab -> ***SHA256: Calculating the hash***](https://web.microsoftstream.com/video/7fed3236-f072-433f-a512-a3007da35953)
+6. [Lab -> ***Endianness***](https://web.microsoftstream.com/video/64686d04-eea6-411a-85de-676559b9246b)
+7. [Stack Overflow -> ***Create a --help option in a command-line program in C/C++***](https://stackoverflow.com/a/20076145/15289693)
