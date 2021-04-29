@@ -48,8 +48,6 @@ For example, when a user fills out a registration form for a website with a pass
   - [README.md](https://github.com/johnshields/SHA512-Calculator/tree/main/program/README.md)
     - An overview of how the program works.
 * [Workings](https://github.com/johnshields/SHA512-Calculator/tree/main/workings)
-  - [images](https://github.com/johnshields/SHA512-Calculator/tree/main/workings/images)
-    - Images for documentation.
   - [References.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research.md)
     - Resources & References that aided the development and research of the program.
   - [Research-and-Development-Diary.md](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/Research-and-Development-Diary.md)

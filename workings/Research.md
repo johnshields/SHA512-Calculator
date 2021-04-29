@@ -16,14 +16,14 @@ and in the generation of random numbers or bits.
 The algorithms differ in terms of the size of the blocks and words of data that are
 used during hashing or message digest sizes. [[1]](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
 
-[![SHA Properties](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/images/SHA_properties%20.png?raw=true)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+[![SHA Properties](https://user-images.githubusercontent.com/26766163/116591076-5aa3f000-a916-11eb-8d51-8b8a2cf305da.png)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
 
 
 ## SHA-512
 SHA-512 is part of the SHA-2 set of cryptographic hash functions, designed by the U.S. National Security Agency (NSA) and published in 2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). A hash function is an algorithm that transforms (hashes) an arbitrary set of data elements, such as a text file, into a single fixed-length value (the hash). The computed hash value may then be used to verify the integrity of copies of the original data without providing any means to derive said original data. Irreversible, a hash value may be freely distributed, stored, and used for comparative purposes. SHA stands for Secure Hash Algorithm. SHA-2 includes a significant number of changes from its predecessor. [[17]](https://md5hashing.net/hash/sha512)
 
-### Experimenting with [Online SHA-512 Calulator](https://emn178.github.io/online-tools/sha512.html).
-[![Online SHA-512 Calulator](https://github.com/johnshields/SHA512-Calculator/blob/main/workings/images/SHA-512_online.png?raw=true)](https://emn178.github.io/online-tools/sha512.html)
+### Experimenting with [Online SHA-512 Calculator](https://emn178.github.io/online-tools/sha512.html).
+![SHA-512_online](https://user-images.githubusercontent.com/26766163/116591267-87580780-a916-11eb-8e39-b578c4e43543.png)
 
 ### getopts
 getopt is a C library function used to parse command-line options of the Unix/POSIX style. It is a part of the POSIX specification and is universal to Unix-like systems. It is also the name of a Unix program for parsing command-line arguments in shell scripts.
