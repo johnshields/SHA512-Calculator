@@ -1,3 +1,4 @@
+#!make
 # Program Makefile
 # Make executable.
 sha512calculator: sha512calculator.c

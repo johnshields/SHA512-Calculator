@@ -84,8 +84,8 @@ SHA-512 works on blocks of 1024 bits.
 union Block {
     // 8 x 128 = 1024 - dealing with block as bytes.
     BYTE bytes[128];
-    // 32 x 16 = 1024 - dealing with block as words.
-    WORD words[32];
+    // 64 x 16 = 1024 - dealing with block as words.
+    WORD words[16];
     // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
     uint64_t sixF[16];
 };

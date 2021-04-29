@@ -68,8 +68,8 @@ const int _i = 1;
 union Block {
     // 8 x 128 = 1024 - dealing with block as bytes.
     BYTE bytes[128];
-    // 32 x 16 = 1024 - dealing with block as words.
-    WORD words[32];
+    // 64 x 16 = 1024 - dealing with block as words.
+    WORD words[16];
     // 64 x 16 = 1024 - dealing with the last 128 bits of last block.
     uint64_t sixF[16];
 };
@@ -266,31 +266,29 @@ int main(int argc, char *argv[]) {
     // File pointer for reading.
     FILE *f;
 
-    // --help in command line - [7].
     const char *help = "\nType './sha512calculator --help' for more info. \n";
-    if (argc == 2 && strcmp(argv[1], "--help")==0) {
+
+    // --help in command line - [7].
+    if (argc == 2 && strcmp(argv[1], "--help") == 0) {
         printf("SHA-512 Calculator --help \n");
         printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
     }
-
-    // If more than 2 arguments are entered (more than one file).
-    if (argc > 2) {
+        // If more than 2 arguments are entered (more than one file).
+    else if (argc > 2) {
         printf("Unreachable command. \n");
         printf("%s", help);
         return 1;
     }
-
-    // Error checking to show if no file was specified in the command line argument.
-    if (argc != 2) {
+        // Error checking to show if no file was specified in the command line argument.
+    else if (argc != 2) {
         printf("Expected filename in argument. \n");
         printf("%s", help);
         return 1;
     }
-
-    // Open file from command line for reading.
-    if (!(f = fopen(argv[1], "r"))) {
+        // Open file from command line for reading.
+    else if (!(f = fopen(argv[1], "r"))) {
         printf("Not able to read file %s \n", argv[1]);
         printf("%s", help);
         return 1;
