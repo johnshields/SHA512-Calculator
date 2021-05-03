@@ -17,6 +17,7 @@
 15. [*Using fuzzy bits and neural networks to partially invert few rounds of some cryptographic hash functions*, Sergij V. Goncharov](https://arxiv.org/pdf/1901.02438.pdf)
 16. [*Bitcoin: A Peer-to-Peer Electronic Cash System*, Satoshi Nakamoto](https://bitcoin.org/bitcoin.pdf)
 17. [*Sha512 — Reverse lookup, unhash, and decrypt*, md5hashing](https://md5hashing.net/hash/sha512)
+18. [*SHA-512 - hash | challenge*](https://web.archive.org/web/20171002020748/http://www.h11e.com/)
 
 ## Code
 1. [NIST -> ***Secure Hash Standard***](https://www.nist.gov/publications/secure-hash-standard)

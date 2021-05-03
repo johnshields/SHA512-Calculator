@@ -281,13 +281,18 @@ On [Project Nayuki](https://www.nayuki.io/page/lowest-sha512-value-by-brute-forc
 
 This program took 5.261 billion trails to find a hash with just nine zeros. This goes to shows that it is quite challenging to find a hash with at least twelve zeros even by brute force.
 
+Project Nayuki was part of a ['hash challenge'](https://web.archive.org/web/20171002020748/http://www.h11e.com/) to find the lowest hash value of SHA-512. 
+On the challenge's leaderboard the Nayuki did find a hash with twelve zeros which was the lowest hash value found (Figure below) along with two others with twelve zeros.
+
+[![image](https://user-images.githubusercontent.com/26766163/116894774-5a636780-ac2a-11eb-9e4a-c7242113169a.png)](https://web.archive.org/web/20171002020748/http://www.h11e.com/)
+
 However, according to a Stack Exchange post titled *[Which is the smallest hash that has ever been hashed?](https://bitcoin.stackexchange.com/a/105023)*. A reply showed a program that found four block hashes in Bitcoin beginning with twelve zeros in Java (See Figure below).   
 
 [![image](https://user-images.githubusercontent.com/26766163/115032196-f5d1aa00-9ec0-11eb-8371-bdc8feef0439.png)](https://bitcoin.stackexchange.com/a/105023)
 
 As the figure shows other hashes above twelve zeros were also found in some other blocks.
 
-In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task and Bitcoin appears to be the only place where this could happen.
+In conclusion, although finding a hash starting with twelve zeros is possible, it can be a difficult task and Bitcoin mining appears to be the only common place where this could happen.
 ***
 
 ###### END OF README
