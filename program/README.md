@@ -188,12 +188,9 @@ int next_block(FILE *f, union Block *M, enum Status *S, uint64_t *num_of_bits) {
         *S = END;
     }
 
-    // swap the byte order of the words if is_little_endian
-    if (is_little_endian()) {
-        for (int i = 0; i < 16; i++) {
-            M->words[i] = bswap_64(M->words[i]);
-        }
-    }
+    // Swap the byte order of the words if is_little_endian.
+    if (!is_little_endian()) return 1;
+    for (int i = 0; i < 16; i++) M->words[i] = bswap_64(M->words[i]);
     return 1;
 }
 ```
@@ -216,12 +213,10 @@ int next_hash(union Block *M, WORD H[]) {
     int t;
     // Temporary variables.
     WORD a, b, c, d, e, f, g, h, T1, T2;
-
+    
     // Prepare the message schedule - [1] Section 6.4.2, part 1.
-    for (t = 0; t < 16; t++)
-        W[t] = M->words[t];
-    for (t = 16; t < 80; t++)
-        W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
+    for (t = 0; t < 16; t++) W[t] = M->words[t];
+    for (t = 16; t < 80; t++) W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
 
     // Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value.
     // [1] Section 6.4.2, part 2.
@@ -317,24 +312,24 @@ int main(int argc, char *argv[]) {
     FILE *f;
 
     // --help in command line - [7].
-    if (argc == 2 && strcmp(argv[1], "--help")==0) {
-        printf("SHA-512 Calculator --help \n");
-        printf("\nHash a file with the program by specifying a file e.g: './sha512calculator test_inputs/seasalt.txt' \n");
+    const char *help = "\nType './sha512calculator --help' for more info. \n";
+    if (argc == 2 && strcmp(argv[1], "--help") == 0) {
+        printf("SHA-512 Calculator --help \n\nHash a file with the program by specifying a file. \n");
+        printf("For example: './sha512calculator test_inputs/seasalt.txt'\n");
         printf("\nPlease make sure the file path and type is correct. \n");
         return 0;
-    }
-
-    // Error checking to show if no file was specified in the command line argument.
-    if (argc != 2) {
-        printf("Expected filename in argument. \n");
-        printf("\nType './sha512calculator --help' for more info. \n");
+    } // else if more than 2 arguments are entered (more than one file).
+    else if (argc > 2) {
+        printf("Unreachable command. \n%s", help);
+    return 1;
+    } // else if no file was specified in the command line argument.
+    else if (argc != 2) {
+        printf("Expected filename in argument. \n%s", help);
         return 1;
     }
-
     // Open file from command line for reading.
     if (!(f = fopen(argv[1], "r"))) {
-        printf("Not able to read file %s \n", argv[1]);
-        printf("\nType './sha512calculator --help' for more info. \n");
+        printf("Not able to read file %s \n%s", argv[1], help);
         return 1;
     }
 
@@ -344,7 +339,7 @@ int main(int argc, char *argv[]) {
     // Print the final SHA-512 hash.
     for (int i = 0; i < 8; i++)
         printf("%016" PF, H[i]);
-    printf("  %s\n", argv[1]);
+    printf("  %s\n", argv[1]); // print file name.
 
     // Close the file.
     fclose(f);
