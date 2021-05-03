@@ -203,10 +203,8 @@ The SHA-512 hash computation is the part that makes it irreversible. This is don
 
 #### Prepare the message schedule - [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 1.
 ```c
-for (t = 0; t < 16; t++)
-    W[t] = M->words[t];
-for (t = 16; t < 80; t++)
-    W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
+for (t = 0; t < 16; t++) W[t] = M->words[t];
+for (t = 16; t < 80; t++) W[t] = Sig1(W[t - 2]) + W[t - 7] + Sig0(W[t - 15]) + W[t - 16];
 ```
 
 #### Initialize the eight working variables, a, b, c, d, e, f, g, and h, with the (i-1)st hash value. [[1]](https://www.nist.gov/publications/secure-hash-standard) Section 6.4.2, part 2.
